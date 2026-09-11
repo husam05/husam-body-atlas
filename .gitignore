@@ -1,0 +1,37 @@
+# Dependencies and local build/test caches
+node_modules/
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+playwright-report/
+test-results/
+
+# Local credentials and agent workspaces
+.env
+.env.*
+!.env.example
+.codex/
+.agents/
+.codex-review-tmp/
+
+# Raw CT archives and intermediate source images stay local.
+/*.zip
+/*.jpeg
+/ct_montage.png
+/make_arabic_review_pdf.py
+
+# Historical artwork, reference captures, and superseded previews
+/husam-body/design/
+/husam-body/references/
+/husam-body/preview-*.png
+!/husam-body/preview-enhanced-desktop.png
+!/husam-body/preview-enhanced-mobile.png
+!/husam-body/preview-enhanced-arabic.png
+!/husam-body/preview-enhanced-immersive.png
+!/husam-body/preview-ct.png
+
+# Generated verification logs and temporary report preview
+/husam-body/tests/*results.json
+/husam-body/research/report-validation.json
+/husam-body/research/report-preview.png

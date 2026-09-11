@@ -1,0 +1,358 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Medical visualization design evidence</title><style>@font-face{font-family:Arabic;src:url('../assets/arabic.ttf')}*{box-sizing:border-box}html{background:#eeeeec}body{max-width:930px;margin:0 auto;padding:60px 70px;background:white;color:#262a2b;font:16px/1.7 Georgia,Arabic,serif}h1{font:600 36px/1.2 Arial,sans-serif;margin:0 0 32px;color:#111}h2{font:600 24px/1.3 Arial,sans-serif;margin:38px 0 16px;color:#222}h3{font:600 18px/1.4 Arial,sans-serif}p{margin:0 0 16px}a{color:#365467;text-decoration:underline;overflow-wrap:anywhere}table{width:100%;border-collapse:collapse;font:13px/1.5 Arial,Arabic,sans-serif;margin:24px 0}th,td{border:1px solid #c9cccd;padding:10px;vertical-align:top}th{background:#f0f0ee;text-align:left}tr{break-inside:avoid}ul,ol{padding-left:24px}li{margin:6px 0}code{font-size:12px;overflow-wrap:anywhere}.footnotes{font:12px/1.5 Arial,Arabic,sans-serif}.footnotes p{margin:6px 0}.footnote-ref{font:11px Arial,sans-serif}.footnote-backref{display:none}figure{margin:24px 0;break-inside:avoid}figure img{display:block;width:100%;height:auto;border:1px solid #c9cccd}.comparison-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}.comparison-pair p,figcaption{font:12px/1.5 Arial,Arabic,sans-serif;margin:8px 0 0}.comparison-pair img{height:245px;object-fit:cover;object-position:top}figcaption{color:#4c5356}strong{font-weight:700}.nav{font:13px Arial,sans-serif;margin-bottom:30px}.nav a{margin-right:20px}@page{size:A4;margin:18mm 17mm} @media print{html{background:white}body{padding:0;font-size:10.8pt;line-height:1.5;max-width:none}h1{font-size:24pt}h2{font-size:16pt;break-after:avoid}h3{break-after:avoid}.comparison-pair img{height:150px}figcaption,.comparison-pair p{font-size:8pt}table{font-size:8.5pt}th,td{padding:6px}.nav{display:none}a{color:#293f4b}.footnotes{font-size:8.5pt}p{orphans:3;widows:3}} @media(max-width:600px){body{padding:30px 22px;font-size:15px}h1{font-size:30px}.comparison-pair{grid-template-columns:1fr}.comparison-pair img{height:auto}table{font-size:11px}th,td{padding:6px}}</style><body><nav class="nav"><a href="../index.html">Open interactive atlas</a><a href="design-evidence.pdf">Download PDF</a></nav><h1>Medical visualization design evidence</h1>
+<p>The atlas connects reported anatomical findings with an educational three-dimensional body, a conceptual bladder-wall cutaway, and a separate reconstruction of the actual CT coverage. Its visual credibility depends on clear source attribution, stable anatomical orientation, and explicit limits on what images or tissue samples establish.</p>
+<p>The supplied pathology reports low-grade inverted urothelial carcinoma, with pTa / G1 preserved as written. No lamina propria invasion was identified and detrusor muscle was present and tumor-free in the examined specimen. Earlier CT findings must remain dated before TURBT. Liver findings remain indeterminate; the left-hip observation belongs to the secondary Arabic review. Numerical organ efficiency cannot be inferred from the supplied records.</p>
+<p>The design therefore emphasizes three complementary views: the body for location, the enlarged wall layers for explanation, and the CT surfaces for the scanned anatomy. Colors and illumination identify selection and evidence categories; they are not severity measurements. A more realistic image does not establish a more certain diagnosis.</p>
+<h2>Interface and motion design</h2>
+<p>The visual direction gives the human body the largest and earliest useful area of the screen. Anatomy 3D Atlas provides a relevant interaction reference: rotation, zoom, selection, isolation, pins, layers, centering, and transparency all support deliberate inspection of anatomy. Its light page surroundings and dark anatomical imagery inform the atlas’s white, gray, charcoal, and orange palette.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> The Mozaweb male-body scene contributes a clear separation of skin, skeletal muscles, skeleton, and organ systems.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> These are references for presentation and navigation; the local atlas retains its own schematic geometry and clinical annotations.</p>
+<h3>Layout and readable evidence</h3>
+<p>The principal layout decision is a compact patient header followed by one finding selector and the viewer. A 320 px finding panel accompanies the viewer at widths of 1100 px and above. Smaller layouts place a concise finding summary beneath the viewer, with complete detail available in a dialog. The summary retains the selected organ, evidence category, source, and relevant uncertainty so the shorter layout does not remove the context needed to interpret the anatomy.</p>
+<p>Scene controls belong above the canvas; camera manipulation belongs below it. General body layers appear only in Whole body mode. The selected finding receives a full annotation while other findings use compact selectable pins. An explicit option reveals all labels. This makes the initial view quieter while preserving access to the same information. Pin positions remain attached to their anatomical anchors; visual spacing must not change a finding’s implied location.</p>
+<p>The chosen reading sizes are 16 px for English clinical text and 18 px for Arabic clinical text. Important controls have a 44 px activation target. These are product decisions, not claimed WCAG font-size requirements or a statement of full conformance. Arabic changes document language, reading order, and control alignment without reflecting the anatomical model. Latin classifications and measurements need isolated left-to-right spans. W3C distinguishes language from direction and recommends declaring direction in HTML.<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></p>
+<h3>Controlled movement</h3>
+<p>Camera presets and organ focus use a 600 ms transition around the target. An orbital route between front and back maintains an exterior view; straight interpolation across opposite camera positions can cross the body. Button zoom uses 180 ms. Finding-panel changes use 180 ms, and scene crossfades use 220 ms. These durations are implementation choices for a brief, legible response; the sources do not establish them as medically or experimentally optimal.</p>
+<p>A new selection replaces an unfinished transition. Direct dragging and keyboard movement interrupt camera animation. Expanding the viewer preserves its orientation. During a scene crossfade, labels wait until the new scene is available, preventing a caption for one view from appearing over another. The canvas remains mounted during selections and keyboard focus stays with the active control. These behaviors protect continuity when someone explores several findings quickly.</p>
+<p>Reduced-motion preferences apply immediately, including when the operating-system preference changes while the atlas is open. Active transitions finish, automatic movement stops, and static explanatory content remains accessible. Manual camera controls continue to work. W3C’s Animation from Interactions criterion addresses disabling nonessential interaction-triggered motion; its discussion describes potential discomfort from movement. This is a rationale for offering a stable view, not a claim that the full application has undergone a conformance assessment.<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup></p>
+<h3>Rendering and interpretive limits</h3>
+<p>The renderer requests frames when state, camera position, layout, or visible effects change, and continues while damping or a deliberate animation requires them. It stops when the view settles. Three.js documents this event-driven approach and the need to coalesce requests when controls with damping produce further change events.<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup> The practical aim is to avoid unnecessary work while a person reads a stationary finding. No battery-life or hardware-performance improvement is quantified here.</p>
+<p>Shell opacity changes are separate from presentation selection; annotation measurements are cached between relevant layout changes. Together with a persistent canvas, these decisions reduce repeated work during ordinary navigation. They do not increase the resolution, accuracy, or clinical validation of the underlying anatomy or CT surfaces.</p>
+<p>All transitions represent interface navigation. They do not portray tumor shrinkage, progression, postoperative clearance, measured urine flow, or changes in organ efficiency. Natural tissue colors and additional body layers remain educational context. The dated evidence and specimen qualifiers described below remain the basis for the clinical text.</p>
+<h3>Before and after</h3>
+<p>The earlier desktop preview shows the larger introductory region and repeated navigation that competed with the anatomy. The enhanced previews document the compact header, viewer emphasis, mobile summary, and Arabic reading order. These screenshots are local interface records, not new medical evidence.<sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup></p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Earlier interface</th>
+<th>Enhanced interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First anatomy view</td>
+<td>Viewer began about 383 px from the top at 1440 × 900 and 457 px at 320 × 900.</td>
+<td>Viewer begins at 202.8 px at 1440 px width and 242.8 px at 320 px width, both in English.</td>
+</tr>
+<tr>
+<td>Navigation</td>
+<td>Finding selection repeated in separate regions.</td>
+<td>One finding selector; full detail beside the viewer or in a dialog.</td>
+</tr>
+<tr>
+<td>Readability</td>
+<td>Some compact mobile labels were below 10 px.</td>
+<td>Clinical text at 16 px English / 18 px Arabic; essential context remains readable.</td>
+</tr>
+<tr>
+<td>Camera continuity</td>
+<td>Opposite presets could interpolate across the body.</td>
+<td>Exterior orbital route with immediate interruption.</td>
+</tr>
+<tr>
+<td>Static viewing</td>
+<td>Frames continued while the image was idle.</td>
+<td>Rendering settles when no visible change is needed.</td>
+</tr>
+<tr>
+<td>Keyboard continuity</td>
+<td>Replacing the interface could discard focused controls.</td>
+<td>Canvas and control focus survive selection updates.</td>
+</tr>
+</tbody>
+</table>
+<p>The English 390 px layout begins the viewer at 235.2 px; the Arabic 320 px and 390 px layouts begin it at 250.2 px. All nine recorded layouts have no page overflow and no tested primary controls below the 44 px target. These are local CSS-pixel measurements at specified viewport sizes, not cross-device performance measurements.</p>
+<p>The <a href="../tests/interface-results.json">interface regression results</a> record 15 passed groups covering focus continuity, orbital camera travel and interruption, stable scene changes, expanded-view orientation, idle rendering, dynamic reduced motion, mobile detail access, printing, and offline operation without browser errors or remote requests. The paired previews document appearance; these targeted checks do not establish full accessibility conformance or clinical validation.</p>
+<figure class="comparison"><div class="comparison-pair"><div><img src="before-desktop.png" alt="Earlier atlas desktop interface with a large introductory region and anatomy viewer lower on the page"><p>Earlier desktop interface</p></div><div><img src="../preview-enhanced-desktop.png" alt="Enhanced desktop atlas with compact header, prominent anatomy viewer, and adjacent finding details"><p>Enhanced desktop interface</p></div></div><figcaption>Figure 1. Local interface comparison. Both views use illustrative anatomy; neither is an organ segmentation.</figcaption></figure>
+<p>The <a href="../preview-enhanced-mobile.png">phone preview</a>, <a href="../preview-enhanced-arabic.png">Arabic preview</a>, and <a href="../preview-enhanced-immersive.png">expanded-view preview</a> provide full-size records of the corresponding layouts.</p>
+<h2>Clinical interpretation and visual constraints</h2>
+<p><strong>The artwork should communicate one central distinction:</strong> the body map illustrates findings described on the CT before TURBT, while the later tissue report supplies the bladder diagnosis. The records support a low-grade, non-invasive finding in the examined specimen. They do not establish current residual disease, complete removal, whole-body cancer stage, or numerical organ efficiency. These limits belong beside the relevant visuals and in exported images.</p>
+<p><strong>The local evidence has three different roles.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Record</th>
+<th>Date and pages</th>
+<th>What it contributes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../%D8%AD%D8%B3%D8%A7%D9%85%20%D8%B5%D9%84%D8%A7%D8%AD%20%D9%85%D9%87%D8%AF%D9%8A.pdf">حسام صلاح مهدي.pdf</a>, R1</td>
+<td>Specimen collected 5 September; reported 9 September 2026; p. 1</td>
+<td>Signed pathology report, read from its scanned page. The primary source for the tissue diagnosis and statements about invasion in the sample.</td>
+</tr>
+<tr>
+<td><a href="../../report.pdf">report.pdf</a>, R2</td>
+<td>CT performed 2 September; report issued 3 September 2026; pp. 1–2</td>
+<td>Original radiology report. Source for lesion sizes, anatomical relationships, renal observations, liver uncertainty, and CT limitations.</td>
+</tr>
+<tr>
+<td><a href="../../%D9%85%D8%B1%D8%A7%D8%AC%D8%B9%D8%A9_%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9_%D9%84%D8%AF%D8%B1%D8%A7%D8%B3%D8%A9_%D8%A7%D9%84%D8%A8%D8%B7%D9%86_%D9%88%D8%A7%D9%84%D8%AD%D9%88%D8%B6.pdf">مراجعة_عربية_لدراسة_البطن_والحوض.pdf</a>, R3</td>
+<td>Reviews the 2 September study; no separate issue date established; pp. 1–3</td>
+<td>Secondary interpretation. Adds the left-hip observation and discusses imaging limitations. It is not an addendum signed by the original radiologist.</td>
+</tr>
+</tbody>
+</table>
+<p>The supplied Study0908095422986.zip underlies the separate CT reconstruction. A surface extracted from image density should be described by its reconstruction method; it should not acquire a tumor label merely because it appears in a medical scene.</p>
+<p><strong>Preserve the sequence of events in every version.</strong> R2 p. 1 describes two enhancing masses inside the bladder near the ureteric entrances. The patient-left mass measures approximately 18 × 10 mm, with a narrow pedicle up to approximately 5 mm. The patient-right mass measures approximately 13 × 8 mm, with an attachment up to approximately 12 mm. These measurements belong to the 2 September CT, before the 5 September tissue collection documented in R1. The pathology report arrived on 9 September. <a href="../../report.pdf">R2</a>, p. 1; <a href="../../%D8%AD%D8%B3%D8%A7%D9%85%20%D8%B5%D9%84%D8%A7%D8%AD%20%D9%85%D9%87%D8%AF%D9%8A.pdf">R1</a>, p. 1.</p>
+<p>A three-point timeline should remain visible: CT → TURBT specimen collection → pathology result. Do not animate the masses shrinking or disappearing after TURBT: the supplied documents do not establish the completeness of resection or present appearance. The preferred caption is “CT findings before TURBT; current residual disease is not established.” In Arabic: “نتائج التصوير قبل الاستئصال؛ لا تحدد الوثائق وجود ورم متبقٍ حالياً.” EAU describes accurate diagnosis and removal of visible lesions as goals of TURBT; a procedural goal is not evidence that a particular patient’s removal was complete. <sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup>.</p>
+<p><strong>Represent the pathology faithfully without assigning an overall stage.</strong> R1 reports low-grade inverted urothelial carcinoma with a predominantly inverted/endophytic growth pattern. It identifies no lamina propria invasion and reports detrusor muscle present and tumor-free. The report’s stated category is pTa / G1. Preserve that notation with “as reported,” alongside the plain-language diagnosis. <a href="../../%D8%AD%D8%B3%D8%A7%D9%85%20%D8%B5%D9%84%D8%A7%D8%AD%20%D9%85%D9%87%D8%AF%D9%8A.pdf">R1</a>, p. 1.</p>
+<p>Ta is a primary-tumor category describing non-invasive papillary carcinoma; T1 describes invasion into subepithelial connective tissue, and T2 describes muscle invasion. Regional nodes and distant metastasis have separate N and M categories. Therefore pTa alone must not become a newly assigned overall stage in this artwork. Also distinguish grade from anatomical extent: the EAU describes G1–G3 and modern low/high-grade systems separately. The combined notation in R1 should be reproduced rather than silently standardized. <sup class="footnote-ref"><a href="#fn8" id="fnref8">[8]</a></sup>.</p>
+<p>NCI’s patient explanation distinguishes cell grade from cancer stage and shows the lining, supporting tissue, and muscle as separate anatomical layers. This is suitable for a general explanatory inset. It does not permit a claim that the entire bladder or whole body has been microscopically examined. <sup class="footnote-ref"><a href="#fn9" id="fnref9">[9]</a></sup>.</p>
+<p><strong>Inverted growth is an architectural description, not an instruction to draw invasion.</strong> The report describes irregular trabeculae and solid nests but explicitly finds no convincing destructive stromal invasion in the deeper sections examined. A realistic-looking microscopic illustration could mislead if it places detached tumor cells across supporting tissue or through muscle. No histology slides are supplied from which to reproduce the actual microscopic geometry. <a href="../../%D8%AD%D8%B3%D8%A7%D9%85%20%D8%B5%D9%84%D8%A7%D8%AD%20%D9%85%D9%87%D8%AF%D9%8A.pdf">R1</a>, p. 1.</p>
+<p>NCI’s SEER teaching taxonomy includes low-grade papillary urothelial carcinoma with an inverted growth pattern among non-invasive histologies. ICCR’s current TURBT guide explains that inverted lesions can complicate invasion assessment and that invasion requires unequivocal evidence. These sources support separating architectural appearance from destructive invasion; they do not replace this patient’s pathologist. <sup class="footnote-ref"><a href="#fn10" id="fnref10">[10]</a></sup>; <sup class="footnote-ref"><a href="#fn11" id="fnref11">[11]</a></sup>.</p>
+<p>For the design, favor a clearly schematic three-layer inset with adjacent report text. If an epithelial fold is illustrated to explain inward architecture, keep it visibly bounded and label it a conceptual diagram. Avoid a penetrating red arrow. The clinically meaningful label is “No invasion identified in the examined supporting tissue; sampled muscle tumor-free,” not an invented microscopic reconstruction.</p>
+<p><strong>Keep sample qualifiers attached to the reassuring findings.</strong> R1 evaluates submitted tissue; it does not document a whole-bladder mapping study. Use “in the examined sample” on both supporting-tissue and muscle labels. EAU identifies the presence of detrusor muscle as information about specimen/resection quality. ICCR separately records muscle presence and extent of invasion, and emphasizes limits on staging from biopsy/TUR material. Together, these support careful specimen-level wording. <sup class="footnote-ref"><a href="#fn7" id="fnref7:1">[7:1]</a></sup>; <sup class="footnote-ref"><a href="#fn11" id="fnref11:1">[11:1]</a></sup>.</p>
+<p>Similarly, R2’s absence of obvious extravesical extension, significant lymphadenopathy, and destructive bone lesions is a CT observation. Avoid “no spread anywhere” or a green whole-body clearance badge. The pathology’s non-invasive finding is valuable without expanding it beyond the tissue examined. <a href="../../report.pdf">R2</a>, pp. 1–2.</p>
+<p><strong>Explain urinary function without inventing efficiency.</strong> NIDDK describes kidneys filtering blood, ureters transporting urine, and the bladder storing urine. A directional animation can teach this route. Particle speed, quantity, and brightness must remain aesthetic choices with a caption stating that flow is illustrative, not measured. <sup class="footnote-ref"><a href="#fn12" id="fnref12">[12]</a></sup>.</p>
+<p>R2 describes the left kidney as approximately 90 × 45 × 42 mm, with mild parenchymal thinning and a lobulated outline. The right is approximately 118 × 70 mm. Both excrete contrast normally, without collecting-system dilatation or stones. Use 9.0 cm and 11.8 cm as reported lengths; their ratio is not a split-function calculation. The cause of the size difference is not established by these records. <a href="../../report.pdf">R2</a>, p. 1; <a href="../../%D9%85%D8%B1%D8%A7%D8%AC%D8%B9%D8%A9_%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9_%D9%84%D8%AF%D8%B1%D8%A7%D8%B3%D8%A9_%D8%A7%D9%84%D8%A8%D8%B7%D9%86_%D9%88%D8%A7%D9%84%D8%AD%D9%88%D8%B6.pdf">R3</a>, pp. 1, 3.</p>
+<p>Blood-based filtration assessment and urinary albumin testing address kidney function and damage. No creatinine, eGFR, urine-albumin result, or split renal-function study is supplied here. Consequently “contrast excretion preserved on CT” is supported, while “left kidney 76% efficient” or “body efficiency 92%” is fabricated. Do not give the liver, bladder, or hip a performance percentage either. <sup class="footnote-ref"><a href="#fn13" id="fnref13">[13]</a></sup>.</p>
+<p><strong>Retain the liver’s uncertainty.</strong> R2 describes a few small low-density liver findings, the largest approximately 7.7 mm. It considers small benign cystic lesions but cannot confidently exclude metastatic deposits. Thus the artwork should say “Small liver findings — indeterminate.” It must not transform them into diagnosed cysts, confirmed metastases, or liver failure. The later bladder pathology does not characterize the liver lesions. No quantified impact on liver function appears in these documents. <a href="../../report.pdf">R2</a>, pp. 1–2.</p>
+<p>Use amber hollow markers with “illustrative position; enlarged for visibility.” The written report does not supply enough location detail for exact lesion coordinates. Do not draw connecting arrows from bladder to liver. Mention further characterization only as an existing report recommendation: R2 suggests liver MRI or imaging follow-up depending on the clinical situation; the artwork should not prescribe a new investigation schedule.</p>
+<p><strong>Present the hip as a secondary-review observation.</strong> R3 describes moderate-to-severe chronic left-hip degeneration, including joint-space narrowing, sclerosis, subchondral cysts, osteophytes, and mild remodeling. This is absent from the original radiologist’s report. Use an amber or dashed callout labeled “Secondary review — specialist confirmation,” including in exports. Do not present the hip as a biopsy-confirmed finding or as spread from the bladder. <a href="../../%D9%85%D8%B1%D8%A7%D8%AC%D8%B9%D8%A9_%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9_%D9%84%D8%AF%D8%B1%D8%A7%D8%B3%D8%A9_%D8%A7%D9%84%D8%A8%D8%B7%D9%86_%D9%88%D8%A7%D9%84%D8%AD%D9%88%D8%B6.pdf">R3</a>, pp. 1, 3.</p>
+<p>NIAMS explains that osteoarthritis can involve several joint tissues and can cause pain, stiffness, and restricted movement. These are possible effects, not documented symptoms in Husam. An explanatory inset may compare ordinary joint spacing with schematic narrowing, but it must not claim a measured loss of walking ability or predict disability. <sup class="footnote-ref"><a href="#fn14" id="fnref14">[14]</a></sup>.</p>
+<p><strong>Separate possible symptoms from observed findings.</strong> Bladder cancer can be associated with blood in urine, urgency, frequent urination, or burning; these symptoms also occur in other conditions. Husam’s symptom history is not established by the supplied reports. Use an optional panel titled “Possible effects — symptoms not documented,” with restrained illustrations and no automatic bleeding animation. <sup class="footnote-ref"><a href="#fn15" id="fnref15">[15]</a></sup>.</p>
+<p><strong>Use the visual hierarchy to preserve evidence.</strong> The proposed palette is a design decision: warm coral for the pathology-linked bladder focus, amber for uncertain/secondary observations, and muted teal for contextual anatomy. Color must be accompanied by text, not treated as a severity score. Front views place the patient’s right on the viewer’s left; rotating views need stable anatomical laterality. Show two CT-described bladder masses, with the patient-left one larger. Do not add a third lesion, obstruction, vessel invasion, or diseased organs absent from the reports.</p>
+<p>A full-body shell is illustrative anatomy. Actual CT-derived surfaces should appear in a separate, clearly labeled study view restricted to scanned coverage. Dense-tissue thresholding does not constitute tumor segmentation. Every saved image should retain its model type, date context, selected finding, and uncertainty. A hip export without its secondary-source label or a liver export without “indeterminate” loses essential evidence even when the interactive screen is correct.</p>
+<table>
+<thead>
+<tr>
+<th>Essential bilingual label</th>
+<th>Recommended wording</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model type</td>
+<td>Illustrative anatomy / تشريح توضيحي</td>
+</tr>
+<tr>
+<td>Reported category</td>
+<td>pTa / G1, as reported / pTa / G1 كما ورد في التقرير</td>
+</tr>
+<tr>
+<td>Sample scope</td>
+<td>In the examined tissue sample / في العينة النسيجية المفحوصة</td>
+</tr>
+<tr>
+<td>Liver</td>
+<td>Indeterminate liver findings / بؤر كبدية غير محددة الطبيعة</td>
+</tr>
+<tr>
+<td>Hip</td>
+<td>Secondary review observation / ملاحظة من المراجعة الثانوية</td>
+</tr>
+<tr>
+<td>Function</td>
+<td>Function percentage not established / نسبة الكفاءة غير محددة</td>
+</tr>
+</tbody>
+</table>
+<h2>Visualization and interaction</h2>
+<p>A stronger atlas should make anatomy easier to explore while making the origin, date, and limits of each statement easier to recognize. Its principal improvement should be a clear connection between an organ, a written finding, and its source. More realistic lighting can improve appearance; it does not establish that a displayed lesion was segmented from this patient’s images.</p>
+<p>The existing local assets support two complementary experiences: a complete schematic human body and a CT-derived reconstruction of the scanned region. The reconstruction uses 98 axial images, 0.7265625 mm in-plane spacing, 5 mm between slice centers, and 485 mm between the first and last image centers. Twelve JPEG previews sample that series. These are properties of the supplied assets, not measures of organ performance.<sup class="footnote-ref"><a href="#fn16" id="fnref16">[16]</a></sup></p>
+<h2>1. Make evidence visible at the point of interpretation</h2>
+<p>Give each finding a persistent text badge identifying its basis: “Pathology report,” “CT report,” or “Secondary review.” Add the document date and a short statement of what remains unresolved. Pair each badge with a distinct shape or icon. The recommended vocabulary is an editorial design judgment; the requirement to communicate meaningful distinctions through more than color is supported by WCAG 2.2.<sup class="footnote-ref"><a href="#fn17" id="fnref17">[17]</a></sup></p>
+<p>Keep evidence source and certainty as separate fields. A pathology result describes examined tissue; a CT description describes an imaging observation; a secondary review has a different provenance. Collapsing these categories into an unlabeled green-to-red scale would hide those differences. “Not established from these records” should appear as ordinary readable content where needed. Do not invent confidence percentages or body-efficiency gauges.</p>
+<p>Place the study timeline beside the findings. Use explicit dated statements when earlier imaging and later tissue findings coexist. Selecting a timeline event may highlight its associated text, but should not morph a tumor into a smaller or absent tumor unless a source establishes that change. Label schematic markers as schematic in the viewer itself. A source drawer should show filename, relevant page or section, and whether the statement is quoted, summarized, or explanatory.</p>
+<h2>2. Preserve the boundary between surface extraction and anatomy</h2>
+<p>Retain the label “Dense tissue surface” for the CT layer extracted above 300 HU. In 3D Slicer, thresholding selects voxels by intensity; other editing tools refine regions. Its documentation explains that smoothing can remove details, fill gaps, or shrink a segment. Consequently, the present threshold, component filtering, filling, smoothing, and mesh reduction should remain visible in provenance. They do not establish a clinician-reviewed segmentation of bone, organs, or tumors.<sup class="footnote-ref"><a href="#fn18" id="fnref18">[18]</a></sup></p>
+<p>DICOM represents segmentation as derived data and provides attributes describing the segment and the algorithm used to generate it. This is a useful model for the atlas’s provenance record, although the current GLB files are not DICOM segmentation objects. Do not describe them as DICOM SEG exports or imply clinical validation from their file format.<sup class="footnote-ref"><a href="#fn19" id="fnref19">[19]</a></sup></p>
+<p>Show a short CT summary directly beneath the viewer: selected series, acquisition date, image count, slice interval, coverage, and surface method. Keep the detailed metadata link for technical inspection. A coverage indicator on the schematic body may identify the approximate scanned region, provided it is explicitly an overview and does not suggest exact registration between the two models.</p>
+<h2>3. Make orientation and slice correspondence dependable</h2>
+<p>DICOM defines image position, orientation, and pixel spacing in patient coordinates. For a human, increasing coordinates point toward patient left, posterior, and head. Slice thickness and spacing between image centers are distinct attributes. Series names and instance numbers are insufficient substitutes for these geometric fields.<sup class="footnote-ref"><a href="#fn20" id="fnref20">[20]</a></sup></p>
+<p>The assets already record a centered coordinate transform with positive X toward patient left, positive Y toward the head, and positive Z toward the front. Preserve that transform when adding camera presets, clipping, or slice markers. Show a camera-linked orientation indicator rather than fixed screen-edge letters that become misleading after arbitrary rotation.</p>
+<p>Add previous/next preview buttons and an explicit “sample 7 of 12” indicator. Keep the source instance and window settings nearby. The linked plane should reflect the preview’s stored physical position. A future full slice browser should use the source pixels; changing the brightness of an already windowed JPEG cannot recover clipped source values. DICOM defines the stored-pixel rescale operation separately from subsequent display transformations.<sup class="footnote-ref"><a href="#fn21" id="fnref21">[21]</a></sup></p>
+<h2>4. Improve legibility before adding visual complexity</h2>
+<p>The color ratios in this section describe the original stylesheet audit. They identify earlier design weaknesses and are not measurements of the enhanced interface. The interface section above describes the current reading-size and layout decisions.</p>
+<p>WCAG requires at least 4.5:1 contrast for ordinary text and 3:1 for qualifying large text. The original palette includes muted text at approximately 3.71:1 on the paper background, metric labels at 3.10:1 on white, and function notes at 3.02:1 on their light background. These computed CSS pairs identify specific colors to darken; they are not a complete accessibility audit.<sup class="footnote-ref"><a href="#fn22" id="fnref22">[22]</a></sup></p>
+<p>Use approximately 16 px for explanatory paragraphs and 13–14 px for essential metadata as a product recommendation, not a WCAG minimum font size. Keep lengthy explanations outside the canvas. Essential labels should remain readable when the model rotates behind them. Increase paragraph spacing and reserve strong accent color for selection or meaningful status.</p>
+<p>Required controls and graphical distinctions generally need 3:1 contrast against adjacent colors. The original focus outline is about 2.33:1 against white, so a darker outline is advisable. Check it on both light panels and the dark viewer. A soft border may remain decorative, but the selected organ, keyboard focus, and control boundaries must be discoverable.<sup class="footnote-ref"><a href="#fn23" id="fnref23">[23]</a></sup></p>
+<h2>5. Provide complete alternatives to dragging and animation</h2>
+<p>Front, back, side, reset, and zoom buttons are a useful foundation. Add rotate-left/right and tilt-up/down buttons to reach intermediate views without dragging. Add pan alternatives if unrestricted panning remains available. WCAG’s dragging criterion requires a single-pointer alternative; keyboard access is a separate requirement, so arrow-key support alone does not settle both.<sup class="footnote-ref"><a href="#fn24" id="fnref24">[24]</a></sup><sup class="footnote-ref"><a href="#fn25" id="fnref25">[25]</a></sup></p>
+<p>Use native buttons with accessible names, clear pressed states, and visible focus. Give important controls approximately 44 px activation areas where space permits. WCAG 2.2’s AA minimum is 24 by 24 CSS pixels, with defined exceptions; 44 px is the atlas’s usability target.<sup class="footnote-ref"><a href="#fn26" id="fnref26">[26]</a></sup></p>
+<p>Keep auto-rotation off initially. Provide one obvious pause control for all explanatory motion. Honor reduced-motion preferences in every camera transition, including focus-on-organ, and in flow effects. WCAG requires pause, stop, or hide controls for qualifying automatically starting movement lasting more than five seconds. The broader recommendation to minimize optional movement also addresses reading comfort.<sup class="footnote-ref"><a href="#fn27" id="fnref27">[27]</a></sup></p>
+<p>The HTML finding panel should contain the useful meaning conveyed by the model. A canvas label alone is insufficient as an equivalent to a complex visualization; readers need the selected anatomy, findings, provenance, and limits in text. Announce deliberate selection and slice changes briefly without announcing every animation frame.<sup class="footnote-ref"><a href="#fn28" id="fnref28">[28]</a></sup></p>
+<h2>6. Support Arabic and small screens as complete experiences</h2>
+<p>Arabic should use semantic <code>lang</code> and <code>dir</code> attributes on the document or appropriate structural containers. W3C advises using HTML directionality instead of relying on CSS direction alone. Isolate left-to-right medical abbreviations, dates, and measurements when necessary; ensure punctuation stays attached to the intended phrase.<sup class="footnote-ref"><a href="#fn29" id="fnref29">[29]</a></sup></p>
+<p>Interface direction must not mirror patient anatomy or reverse the meaning of left and right. Localize the explanatory labels while preserving the CT coordinate transform. On narrow screens, stack the viewer, controls, and findings in a meaningful order. WCAG reflow guidance supports readable content at a width equivalent to 320 CSS pixels, with exceptions for content requiring a two-dimensional layout. Such an exception for a visualization does not excuse clipped surrounding text or inaccessible controls.<sup class="footnote-ref"><a href="#fn30" id="fnref30">[30]</a></sup></p>
+<h2>7. Use advanced rendering selectively</h2>
+<p>Organ isolation, a restrained cutaway, and stable camera presets are practical improvements for this educational atlas. Multiple transparent shells can produce misleading overlaps: Three.js documents that object sorting cannot resolve every transparency case. Test front, back, oblique, and interior views, and favor simple visibility controls where translucent layers obscure the selected anatomy.<sup class="footnote-ref"><a href="#fn31" id="fnref31">[31]</a></sup></p>
+<p>True volume rendering is a distinct future capability. 3D Slicer describes it as mapping voxel intensities to color and opacity without requiring segmentation. Transfer functions, cropping, interpolation, lighting, and sampling quality affect what appears visible. GPU capacity and rendering quality also constrain interaction. Therefore, a polished volume view would still require explanatory labels and access to source slices; it would not automatically reveal a verified lesion boundary.<sup class="footnote-ref"><a href="#fn32" id="fnref32">[32]</a></sup></p>
+<p>Retain the lightweight mesh mode for the default offline experience. If a volume mode is later added, make it optional, show its display preset, and document resampling and coverage. More elaborate rendering should be accepted only when it improves a concrete task such as locating an organ or understanding a spatial relationship.</p>
+<h2>Delivery priorities</h2>
+<table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Improvement</th>
+<th>Review criterion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Evidence, date, and uncertainty labels</td>
+<td>Every finding exposes its source and temporal context.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Readability and interaction</td>
+<td>Text contrast, focus, keyboard, tap-only operation, Arabic, and narrow-screen layouts are checked.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Spatial clarity</td>
+<td>Orientation stays correct after rotation; preview markers match stored slice positions.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Additional rendering</td>
+<td>Isolation or cutaway improves explanation without implying new patient-specific evidence.</td>
+</tr>
+</tbody>
+</table>
+<h2>Visualization sources</h2>
+<p>Primary web sources were checked on 11 September 2026. DICOM pages identify the 2026c edition; Slicer and Three.js references are current rolling documentation.</p>
+<h2>Medical sources The following institutional sources support general explanation and terminology. Local R1–R3 remain the sources for patient-specific claims. Accessed 11 September 2026.</h2>
+<table>
+<thead>
+<tr>
+<th>Source and direct link</th>
+<th>Publication/review date shown</th>
+<th>Scope used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.cancer.gov/types/bladder/stages">NCI, Bladder Cancer Stages</a></td>
+<td>Updated 16 May 2025</td>
+<td>Grade versus stage; bladder layers.</td>
+</tr>
+<tr>
+<td><a href="https://training.seer.cancer.gov/bladder/types-of-bladder-histologies.html">NCI SEER, Types of Bladder Histologies</a></td>
+<td>Updated 22 April 2025</td>
+<td>Inverted-pattern non-invasive histology terminology.</td>
+</tr>
+<tr>
+<td><a href="https://uroweb.org/guidelines/non-muscle-invasive-bladder-cancer/chapter/pathological-staging-and-classification-systems">EAU, Pathological Staging, Grading and Classification Systems</a></td>
+<td>2026 edition; chapter day/month not shown</td>
+<td>Ta, T1, T2, N/M; grading systems.</td>
+</tr>
+<tr>
+<td><a href="https://uroweb.org/guidelines/non-muscle-invasive-bladder-cancer/chapter/diagnosis">EAU, Diagnosis</a></td>
+<td>2026 edition; chapter day/month not shown</td>
+<td>Tissue assessment, TURBT goals, sample quality.</td>
+</tr>
+<tr>
+<td><a href="https://uroweb.org/guidelines/non-muscle-invasive-bladder-cancer/chapter/introduction">EAU, Introduction</a></td>
+<td>Identifies 2026 update</td>
+<td>Verifies edition of the two chapters.</td>
+</tr>
+<tr>
+<td><a href="https://www.iccr-cancer.org/wp-content/uploads/2025/12/ICCR-UT-Biopsy-TUR-2nd-ed-v2.0-bookmarked.pdf">ICCR, Urinary Tract Carcinoma Histopathology Reporting Guide — Biopsy and Transurethral Resection Specimen</a></td>
+<td>Second edition, version 2.0, December 2025</td>
+<td>Notes 9–10, pp. 10–11: specimen limits, muscle, invasion.</td>
+</tr>
+<tr>
+<td><a href="https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work">NIDDK, Your Kidneys &amp; How They Work</a></td>
+<td>Reviewed June 2018</td>
+<td>Stable urinary anatomy and physiological roles.</td>
+</tr>
+<tr>
+<td><a href="https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/tests-diagnosis">NIDDK, Chronic Kidney Disease Tests &amp; Diagnosis</a></td>
+<td>Reviewed October 2016</td>
+<td>Filtration and urinary albumin assessment; no thresholds applied here.</td>
+</tr>
+<tr>
+<td><a href="https://www.niams.nih.gov/health-topics/osteoarthritis">NIAMS, Osteoarthritis</a></td>
+<td>Reviewed September 2023</td>
+<td>Possible joint effects, not patient attribution.</td>
+</tr>
+<tr>
+<td><a href="https://www.cancer.gov/types/bladder/symptoms">NCI, Bladder Cancer Symptoms</a></td>
+<td>Updated 16 February 2023</td>
+<td>Possible urinary symptoms and non-specificity.</td>
+</tr>
+</tbody>
+</table>
+<p>The older NIDDK pages are used for stable anatomy and the role of testing, not current treatment algorithms or calculation equations. Public sources cannot resolve the remaining patient-specific gaps: current residual tumor, complete resection, exact microscopic architecture, liver-lesion identity, left-hip clinical significance, or organ performance. The artwork should make those gaps legible rather than fill them with realistic-looking invention.</p>
+<h2>Interface sources</h2>
+<p>The public sources below describe visual references or general implementation and accessibility principles. They do not supply patient-specific diagnoses. Accessed 11 September 2026.</p>
+<ol>
+<li>Catfish Animation Studio. <a href="https://anatomy3datlas.com/">Anatomy 3D Atlas</a>. Public home page and feature descriptions. Undated.</li>
+<li>Mozaik Education. <a href="https://www.mozaweb.com/Extra-3D_scenes-Human_body_male-4022">Human body (male) — 3D scene</a>. Public scene listing and layer descriptions. Undated.</li>
+<li>W3C Internationalization. <a href="https://www.w3.org/International/questions/qa-html-dir">Structural markup and right-to-left text in HTML</a>. Current guidance.</li>
+<li>W3C WAI. <a href="https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html">Understanding SC 2.3.3: Animation from Interactions</a>. WCAG 2.2 explanatory guidance.</li>
+<li>Three.js. <a href="https://threejs.org/manual/en/rendering-on-demand.html">Rendering on Demand</a>. Current manual.</li>
+<li>Local interface records. <a href="before-desktop.png">Earlier desktop</a>, <a href="../preview-enhanced-desktop.png">enhanced desktop</a>, <a href="../preview-enhanced-mobile.png">phone</a>, <a href="../preview-enhanced-arabic.png">Arabic</a>, and <a href="../preview-enhanced-immersive.png">expanded view</a>. Private project files.</li>
+</ol>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Catfish Animation Studio, <a href="https://anatomy3datlas.com/">Anatomy 3D Atlas</a>, public home page and feature descriptions, undated. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>Mozaik Education, <a href="https://www.mozaweb.com/Extra-3D_scenes-Human_body_male-4022">Human body (male) — 3D scene</a>, public scene listing and layer descriptions, undated. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>W3C Internationalization, <a href="https://www.w3.org/International/questions/qa-html-dir">Structural markup and right-to-left text in HTML</a>, current guidance. <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p>W3C WAI, <a href="https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html">Understanding SC 2.3.3: Animation from Interactions</a>, WCAG 2.2 explanatory guidance. <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p>Three.js, <a href="https://threejs.org/manual/en/rendering-on-demand.html">Rendering on Demand</a>, current manual. <a href="#fnref5" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn6" class="footnote-item"><p>Local interface records: <a href="before-desktop.png">earlier desktop</a>, <a href="../preview-enhanced-desktop.png">enhanced desktop</a>, <a href="../preview-enhanced-mobile.png">enhanced phone</a>, <a href="../preview-enhanced-arabic.png">enhanced Arabic</a>, and <a href="../preview-enhanced-immersive.png">enhanced expanded view</a>. Kept within the local project; no private report or CT upload is needed. <a href="#fnref6" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn7" class="footnote-item"><p>EAU Diagnosis, sections 5.8 and 5.10. <a href="https://uroweb.org/guidelines/non-muscle-invasive-bladder-cancer/chapter/diagnosis">https://uroweb.org/guidelines/non-muscle-invasive-bladder-cancer/chapter/diagnosis</a>. Accessed 11 September 2026. <a href="#fnref7" class="footnote-backref">↩︎</a> <a href="#fnref7:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn8" class="footnote-item"><p>EAU Pathological Staging, sections 4.1–4.5. <a href="https://uroweb.org/guidelines/non-muscle-invasive-bladder-cancer/chapter/pathological-staging-and-classification-systems">https://uroweb.org/guidelines/non-muscle-invasive-bladder-cancer/chapter/pathological-staging-and-classification-systems</a>. Accessed 11 September 2026. <a href="#fnref8" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn9" class="footnote-item"><p>NCI Bladder Cancer Stages. <a href="https://www.cancer.gov/types/bladder/stages">https://www.cancer.gov/types/bladder/stages</a>. Accessed 11 September 2026. <a href="#fnref9" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn10" class="footnote-item"><p>NCI SEER Types of Bladder Histologies. <a href="https://training.seer.cancer.gov/bladder/types-of-bladder-histologies.html">https://training.seer.cancer.gov/bladder/types-of-bladder-histologies.html</a>. Accessed 11 September 2026. <a href="#fnref10" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn11" class="footnote-item"><p>ICCR reporting guide, note 10, p. 11. <a href="https://www.iccr-cancer.org/wp-content/uploads/2025/12/ICCR-UT-Biopsy-TUR-2nd-ed-v2.0-bookmarked.pdf">https://www.iccr-cancer.org/wp-content/uploads/2025/12/ICCR-UT-Biopsy-TUR-2nd-ed-v2.0-bookmarked.pdf</a>. Accessed 11 September 2026. <a href="#fnref11" class="footnote-backref">↩︎</a> <a href="#fnref11:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn12" class="footnote-item"><p>NIDDK Your Kidneys &amp; How They Work. <a href="https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work">https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work</a>. Accessed 11 September 2026. <a href="#fnref12" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn13" class="footnote-item"><p>NIDDK Chronic Kidney Disease Tests &amp; Diagnosis. <a href="https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/tests-diagnosis">https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/tests-diagnosis</a>. Accessed 11 September 2026. <a href="#fnref13" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn14" class="footnote-item"><p>NIAMS Osteoarthritis. <a href="https://www.niams.nih.gov/health-topics/osteoarthritis">https://www.niams.nih.gov/health-topics/osteoarthritis</a>. Accessed 11 September 2026. <a href="#fnref14" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn15" class="footnote-item"><p>NCI Bladder Cancer Symptoms. <a href="https://www.cancer.gov/types/bladder/symptoms">https://www.cancer.gov/types/bladder/symptoms</a>. Accessed 11 September 2026. <a href="#fnref15" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn16" class="footnote-item"><p>Local assets: <a href="../assets/ct/metadata.json">CT metadata</a> and <a href="../scripts/build_ct_assets.py">reconstruction script</a>, derived locally from <code>Study0908095422986.zip</code>; no external upload. <a href="#fnref16" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn17" class="footnote-item"><p>W3C WAI, <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html">Understanding SC 1.4.1: Use of Color</a>. <a href="#fnref17" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn18" class="footnote-item"><p>3D Slicer, <a href="https://slicer.readthedocs.io/en/latest/user_guide/modules/segmenteditor.html">Segment Editor: thresholding, smoothing, resolution, and surface artifacts</a>. <a href="#fnref18" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn19" class="footnote-item"><p>NEMA, DICOM PS3.3 2026c, <a href="https://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.8.20.2.html">C.8.20.2 Segmentation Image Module</a>. <a href="#fnref19" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn20" class="footnote-item"><p>NEMA, DICOM PS3.3 2026c, <a href="https://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.7.6.2.html">C.7.6.2 Image Plane Module</a>. <a href="#fnref20" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn21" class="footnote-item"><p>NEMA, DICOM PS3.3 2026c, <a href="https://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.11.html">C.11.1 Modality LUT Module</a>. <a href="#fnref21" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn22" class="footnote-item"><p>W3C WAI, <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html">Understanding SC 1.4.3: Contrast (Minimum)</a>. Baseline colors from the original atlas stylesheet; ratios calculated using WCAG relative luminance. <a href="#fnref22" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn23" class="footnote-item"><p>W3C WAI, <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html">Understanding SC 1.4.11: Non-text Contrast</a>. <a href="#fnref23" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn24" class="footnote-item"><p>W3C WAI, <a href="https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html">Understanding SC 2.5.7: Dragging Movements</a>. <a href="#fnref24" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn25" class="footnote-item"><p>W3C WAI, <a href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html">Understanding SC 2.1.1: Keyboard</a>. <a href="#fnref25" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn26" class="footnote-item"><p>W3C WAI, <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html">Understanding SC 2.5.8: Target Size (Minimum)</a>. <a href="#fnref26" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn27" class="footnote-item"><p>W3C WAI, <a href="https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html">Understanding SC 2.2.2: Pause, Stop, Hide</a>. <a href="#fnref27" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn28" class="footnote-item"><p>W3C WAI, <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html">Understanding SC 1.1.1: Non-text Content</a>. <a href="#fnref28" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn29" class="footnote-item"><p>W3C Internationalization, <a href="https://www.w3.org/International/questions/qa-html-dir">Structural markup and right-to-left text in HTML</a>. <a href="#fnref29" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn30" class="footnote-item"><p>W3C WAI, <a href="https://www.w3.org/WAI/WCAG22/Understanding/reflow.html">Understanding SC 1.4.10: Reflow</a>. <a href="#fnref30" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn31" class="footnote-item"><p>Three.js, <a href="https://threejs.org/docs/pages/WebGLRenderer.html#sortObjects">WebGLRenderer: sortObjects</a>. <a href="#fnref31" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn32" class="footnote-item"><p>3D Slicer, <a href="https://slicer.readthedocs.io/en/latest/user_guide/modules/volumerendering.html">Volume rendering</a>. <a href="#fnref32" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+</body></html>

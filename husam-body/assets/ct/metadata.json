@@ -1,0 +1,500 @@
+{
+  "sourceArchive": "Study0908095422986.zip",
+  "studyDate": "2026-09-02",
+  "sourceDicomFileCount": 2300,
+  "selectedSeries": {
+    "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000009980",
+    "seriesNumber": 2,
+    "description": "Abdomen  5.0  Br36  3",
+    "slices": 98,
+    "rows": 512,
+    "columns": 512,
+    "spacingSliceRowColumnMm": [
+      5.0,
+      0.7265625,
+      0.7265625
+    ],
+    "imageOrientationPatient": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    "firstImagePositionPatientMm": [
+      -190.63671875,
+      -368.13671875,
+      -1051.4
+    ],
+    "lastImagePositionPatientMm": [
+      -190.63671875,
+      -368.13671875,
+      -566.4
+    ],
+    "coverageMm": 485.0000000000001
+  },
+  "coordinates": {
+    "units": "meters",
+    "axes": {
+      "x": "patient left",
+      "y": "superior / head",
+      "z": "anterior / front"
+    },
+    "originDICOMLPSmm": [
+      -5.0,
+      -182.5,
+      -808.9000000000001
+    ],
+    "formula": "viewer_m = [[1,0,0],[0,0,1],[0,-1,0]] * (DICOM_LPS_mm - originDICOMLPSmm) / 1000",
+    "lpsToViewerRotation": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        0.0,
+        -1.0,
+        0.0
+      ]
+    ]
+  },
+  "limitations": [
+    "Educational, threshold-derived surfaces only; not a clinical or surgical reconstruction.",
+    "Only anatomy within the selected CT coverage is represented; this is not a whole-body scan.",
+    "The external envelope uses a filled largest-component threshold mask and smooths edges.",
+    "Dense voxels are not uniquely bone; the density surface may include other dense structures and can omit thin bone.",
+    "No organs, lesions, obstruction, or disease locations have been segmented or inferred from CT images.",
+    "Original axial previews use a fixed illustrative soft-tissue window and do not replace a DICOM viewer."
+  ],
+  "processing": {
+    "bodyThresholdHU": -450,
+    "densityThresholdHU": 300,
+    "targetResamplingMm": 2.5,
+    "surfaceExtraction": "scikit-image marching cubes",
+    "meshReduction": "spatial vertex clustering",
+    "sourceHUConversion": "RescaleSlope * stored pixel + RescaleIntercept"
+  },
+  "meshes": {
+    "body": {
+      "file": "body-surface.glb",
+      "vertices": 21290,
+      "triangles": 42574,
+      "minMeters": [
+        -0.18307441473007202,
+        -0.2437933385372162,
+        -0.1568695604801178
+      ],
+      "maxMeters": [
+        0.18307439982891083,
+        0.2437933385372162,
+        0.1518523395061493
+      ],
+      "thresholdHU": -450,
+      "spatialClusteringMm": 6.0
+    },
+    "bone": {
+      "file": "bone-density.glb",
+      "vertices": 26858,
+      "triangles": 57260,
+      "minMeters": [
+        -0.15597955882549286,
+        -0.23505482077598572,
+        -0.12833917140960693
+      ],
+      "maxMeters": [
+        0.15338018536567688,
+        0.23505844175815582,
+        0.10642758011817932
+      ],
+      "thresholdHU": 300,
+      "spatialClusteringMm": 4.0
+    }
+  },
+  "previews": [
+    {
+      "file": "axial-01.jpg",
+      "sequence": 1,
+      "sliceIndex": 93,
+      "instanceNumber": 5,
+      "sourceFile": "M1_3_12_2_1107_5_1_4_95218_30000026090209252164000009980/1.3.12.2.1107.5.1.4.95218.30000026090209252164000009985.dcm",
+      "sopInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000009985",
+      "imagePositionPatientMm": [
+        -190.63671875,
+        -368.13671875,
+        -586.4
+      ],
+      "windowCenterHU": 40,
+      "windowWidthHU": 400,
+      "positionFromCenterMeters": 0.22250000000000011
+    },
+    {
+      "file": "axial-02.jpg",
+      "sequence": 2,
+      "sliceIndex": 85,
+      "instanceNumber": 13,
+      "sourceFile": "M1_3_12_2_1107_5_1_4_95218_30000026090209252164000009980/1.3.12.2.1107.5.1.4.95218.30000026090209252164000009993.dcm",
+      "sopInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000009993",
+      "imagePositionPatientMm": [
+        -190.63671875,
+        -368.13671875,
+        -626.4
+      ],
+      "windowCenterHU": 40,
+      "windowWidthHU": 400,
+      "positionFromCenterMeters": 0.1825000000000001
+    },
+    {
+      "file": "axial-03.jpg",
+      "sequence": 3,
+      "sliceIndex": 77,
+      "instanceNumber": 21,
+      "sourceFile": "M1_3_12_2_1107_5_1_4_95218_30000026090209252164000009980/1.3.12.2.1107.5.1.4.95218.30000026090209252164000010001.dcm",
+      "sopInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000010001",
+      "imagePositionPatientMm": [
+        -190.63671875,
+        -368.13671875,
+        -666.4
+      ],
+      "windowCenterHU": 40,
+      "windowWidthHU": 400,
+      "positionFromCenterMeters": 0.14250000000000013
+    },
+    {
+      "file": "axial-04.jpg",
+      "sequence": 4,
+      "sliceIndex": 69,
+      "instanceNumber": 29,
+      "sourceFile": "M1_3_12_2_1107_5_1_4_95218_30000026090209252164000009980/1.3.12.2.1107.5.1.4.95218.30000026090209252164000010009.dcm",
+      "sopInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000010009",
+      "imagePositionPatientMm": [
+        -190.63671875,
+        -368.13671875,
+        -706.4
+      ],
+      "windowCenterHU": 40,
+      "windowWidthHU": 400,
+      "positionFromCenterMeters": 0.10250000000000012
+    },
+    {
+      "file": "axial-05.jpg",
+      "sequence": 5,
+      "sliceIndex": 61,
+      "instanceNumber": 37,
+      "sourceFile": "M1_3_12_2_1107_5_1_4_95218_30000026090209252164000009980/1.3.12.2.1107.5.1.4.95218.30000026090209252164000010017.dcm",
+      "sopInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000010017",
+      "imagePositionPatientMm": [
+        -190.63671875,
+        -368.13671875,
+        -746.4
+      ],
+      "windowCenterHU": 40,
+      "windowWidthHU": 400,
+      "positionFromCenterMeters": 0.06250000000000011
+    },
+    {
+      "file": "axial-06.jpg",
+      "sequence": 6,
+      "sliceIndex": 53,
+      "instanceNumber": 45,
+      "sourceFile": "M1_3_12_2_1107_5_1_4_95218_30000026090209252164000009980/1.3.12.2.1107.5.1.4.95218.30000026090209252164000010025.dcm",
+      "sopInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000010025",
+      "imagePositionPatientMm": [
+        -190.63671875,
+        -368.13671875,
+        -786.4
+      ],
+      "windowCenterHU": 40,
+      "windowWidthHU": 400,
+      "positionFromCenterMeters": 0.022500000000000114
+    },
+    {
+      "file": "axial-07.jpg",
+      "sequence": 7,
+      "sliceIndex": 44,
+      "instanceNumber": 54,
+      "sourceFile": "M1_3_12_2_1107_5_1_4_95218_30000026090209252164000009980/1.3.12.2.1107.5.1.4.95218.30000026090209252164000010034.dcm",
+      "sopInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000010034",
+      "imagePositionPatientMm": [
+        -190.63671875,
+        -368.13671875,
+        -831.4
+      ],
+      "windowCenterHU": 40,
+      "windowWidthHU": 400,
+      "positionFromCenterMeters": -0.022499999999999885
+    },
+    {
+      "file": "axial-08.jpg",
+      "sequence": 8,
+      "sliceIndex": 36,
+      "instanceNumber": 62,
+      "sourceFile": "M1_3_12_2_1107_5_1_4_95218_30000026090209252164000009980/1.3.12.2.1107.5.1.4.95218.30000026090209252164000010042.dcm",
+      "sopInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000010042",
+      "imagePositionPatientMm": [
+        -190.63671875,
+        -368.13671875,
+        -871.4
+      ],
+      "windowCenterHU": 40,
+      "windowWidthHU": 400,
+      "positionFromCenterMeters": -0.06249999999999989
+    },
+    {
+      "file": "axial-09.jpg",
+      "sequence": 9,
+      "sliceIndex": 28,
+      "instanceNumber": 70,
+      "sourceFile": "M1_3_12_2_1107_5_1_4_95218_30000026090209252164000009980/1.3.12.2.1107.5.1.4.95218.30000026090209252164000010050.dcm",
+      "sopInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000010050",
+      "imagePositionPatientMm": [
+        -190.63671875,
+        -368.13671875,
+        -911.4
+      ],
+      "windowCenterHU": 40,
+      "windowWidthHU": 400,
+      "positionFromCenterMeters": -0.10249999999999988
+    },
+    {
+      "file": "axial-10.jpg",
+      "sequence": 10,
+      "sliceIndex": 20,
+      "instanceNumber": 78,
+      "sourceFile": "M1_3_12_2_1107_5_1_4_95218_30000026090209252164000009980/1.3.12.2.1107.5.1.4.95218.30000026090209252164000010058.dcm",
+      "sopInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000010058",
+      "imagePositionPatientMm": [
+        -190.63671875,
+        -368.13671875,
+        -951.4
+      ],
+      "windowCenterHU": 40,
+      "windowWidthHU": 400,
+      "positionFromCenterMeters": -0.14249999999999988
+    },
+    {
+      "file": "axial-11.jpg",
+      "sequence": 11,
+      "sliceIndex": 12,
+      "instanceNumber": 86,
+      "sourceFile": "M1_3_12_2_1107_5_1_4_95218_30000026090209252164000009980/1.3.12.2.1107.5.1.4.95218.30000026090209252164000010066.dcm",
+      "sopInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000010066",
+      "imagePositionPatientMm": [
+        -190.63671875,
+        -368.13671875,
+        -991.4
+      ],
+      "windowCenterHU": 40,
+      "windowWidthHU": 400,
+      "positionFromCenterMeters": -0.18249999999999988
+    },
+    {
+      "file": "axial-12.jpg",
+      "sequence": 12,
+      "sliceIndex": 4,
+      "instanceNumber": 94,
+      "sourceFile": "M1_3_12_2_1107_5_1_4_95218_30000026090209252164000009980/1.3.12.2.1107.5.1.4.95218.30000026090209252164000010074.dcm",
+      "sopInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000010074",
+      "imagePositionPatientMm": [
+        -190.63671875,
+        -368.13671875,
+        -1031.4
+      ],
+      "windowCenterHU": 40,
+      "windowWidthHU": 400,
+      "positionFromCenterMeters": -0.2225
+    }
+  ],
+  "allSeries": [
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209135048300001486",
+      "seriesNumber": "1",
+      "description": "Topogram  1.0  Tr20",
+      "modality": "CT",
+      "files": 1,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209135048300001489",
+      "seriesNumber": "501",
+      "description": "Dose Report",
+      "modality": "SR",
+      "files": 1,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209135048300001593",
+      "seriesNumber": "502",
+      "description": "Patient Protocol",
+      "modality": "CT",
+      "files": 1,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209135048300001691",
+      "seriesNumber": "6",
+      "description": "Topogram  1.0  Tr20",
+      "modality": "CT",
+      "files": 1,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209135048300001694",
+      "seriesNumber": "503",
+      "description": "Dose Report",
+      "modality": "SR",
+      "files": 1,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209135048300001911",
+      "seriesNumber": "504",
+      "description": "Patient Protocol",
+      "modality": "CT",
+      "files": 1,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000009980",
+      "seriesNumber": "2",
+      "description": "Abdomen  5.0  Br36  3",
+      "modality": "CT",
+      "files": 98,
+      "selectedForReconstruction": true
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000010081",
+      "seriesNumber": "3",
+      "description": "Abdomen  5.0  MPR  cor",
+      "modality": "CT",
+      "files": 64,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000010328",
+      "seriesNumber": "4",
+      "description": "Abdomen  5.0  MPR  sag",
+      "modality": "CT",
+      "files": 82,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000010411",
+      "seriesNumber": "5",
+      "description": "Abdomen  1.0  MPR  ax",
+      "modality": "CT",
+      "files": 428,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000011490",
+      "seriesNumber": "7",
+      "description": "CONT35  5.0  Br36  3",
+      "modality": "CT",
+      "files": 44,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000011535",
+      "seriesNumber": "8",
+      "description": "CONT35  5.0  MPR  cor",
+      "modality": "CT",
+      "files": 55,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000011591",
+      "seriesNumber": "9",
+      "description": "CONT35  5.0  MPR  sag",
+      "modality": "CT",
+      "files": 79,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000011671",
+      "seriesNumber": "10",
+      "description": "CONT35  1.0  MPR  ax",
+      "modality": "CT",
+      "files": 218,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000011890",
+      "seriesNumber": "11",
+      "description": "CONT100  5.0  Br36  3",
+      "modality": "CT",
+      "files": 78,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000011969",
+      "seriesNumber": "12",
+      "description": "CONT100  5.0  MPR  cor",
+      "modality": "CT",
+      "files": 57,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000012027",
+      "seriesNumber": "13",
+      "description": "CONT100  5.0  MPR  sag",
+      "modality": "CT",
+      "files": 79,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000012107",
+      "seriesNumber": "14",
+      "description": "CONT100  1.0  MPR  ax",
+      "modality": "CT",
+      "files": 397,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000012505",
+      "seriesNumber": "15",
+      "description": "DELAY 15 MIN  5.0  Br36  3",
+      "modality": "CT",
+      "files": 80,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000012586",
+      "seriesNumber": "16",
+      "description": "DELAY 15 MIN  5.0  MPR  cor",
+      "modality": "CT",
+      "files": 57,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000012644",
+      "seriesNumber": "17",
+      "description": "DELAY 15 MIN  5.0  MPR  sag",
+      "modality": "CT",
+      "files": 79,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.3.12.2.1107.5.1.4.95218.30000026090209252164000012724",
+      "seriesNumber": "18",
+      "description": "DELAY 15 MIN  1.0  MPR  ax",
+      "modality": "CT",
+      "files": 398,
+      "selectedForReconstruction": false
+    },
+    {
+      "seriesInstanceUID": "1.2.840.4892943.343.883.9567",
+      "seriesNumber": "883",
+      "description": "",
+      "modality": "OT",
+      "files": 1,
+      "selectedForReconstruction": false
+    }
+  ]
+}

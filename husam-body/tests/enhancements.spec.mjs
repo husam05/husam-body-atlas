@@ -1,0 +1,23 @@
+import {chromium} from 'playwright';
+import {writeFile} from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const browser=await chromium.launch({executablePath:process.env.CHROME_PATH || '/usr/bin/google-chrome',headless:true,args:['--no-sandbox','--enable-unsafe-swiftshader','--disable-dev-shm-usage']});
+const p=await browser.newPage({viewport:{width:1440,height:1100},acceptDownloads:true});const errors=[];p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
+await p.goto(new URL('../index.html', import.meta.url).href);await p.waitForTimeout(800);
+await p.locator('[data-scene="urinary"]').click();await p.waitForTimeout(800);assert.equal(await p.evaluate(()=>window.__atlas.state.modelView),'urinary');
+await p.screenshot({path:'preview-urinary-focus.png',fullPage:true});
+await p.locator('[data-scene="detail"]').click();await p.waitForTimeout(1000);assert.equal(await p.evaluate(()=>window.__atlas.detail().group.visible),true);assert.equal(await p.evaluate(()=>window.__atlas.model().group.visible),false);
+for(const layer of ['support','muscle','lining']){await p.locator('.layer-options [data-wall="'+layer+'"]').click();assert.equal(await p.evaluate(()=>window.__atlas.state.layer),layer);assert.equal(await p.locator('.layer-options [data-wall="'+layer+'"]').getAttribute('class'),'active');}
+await p.locator('.wall-label[data-wall="lesion"]').click();assert.match(await p.locator('.layer-explainer p').innerText(),/conceptual/i);
+await p.locator('.layer-options [data-wall="lining"]').click();await p.waitForTimeout(300);await p.screenshot({path:'preview-bladder-layers.png',fullPage:true});
+const download=p.waitForEvent('download');await p.locator('[data-action="snapshot"]').click();await(await download).saveAs('Husam-3D-bladder-layers.png');
+await p.locator('#viewport canvas').focus();await p.keyboard.press('ArrowLeft');await p.waitForTimeout(300);
+await p.locator('.organ-chip[data-organ="liver"]').click();await p.waitForTimeout(800);assert.equal(await p.evaluate(()=>window.__atlas.detail().group.visible),false);assert.equal(await p.evaluate(()=>window.__atlas.model().group.visible),true);
+await p.locator('[data-scene="detail"]').click();await p.waitForTimeout(800);
+await p.locator('[data-action="language"]').click();assert.match(await p.locator('.layer-explainer').innerText(),/البطانة/);await p.setViewportSize({width:390,height:844});await p.waitForTimeout(600);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+await p.locator('[data-action="details-open"]').click();assert.match(await p.locator('#details-dialog .layer-explainer').innerText(),/البطانة/);await p.screenshot({path:'preview-mobile-layers.png',fullPage:true});await p.keyboard.press('Escape');
+await p.setViewportSize({width:320,height:800});await p.waitForTimeout(350);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+await p.goto(new URL('../research/index.html', import.meta.url).href);await p.pdf({path:'research/design-evidence.pdf',format:'A4',printBackground:true,preferCSSPageSize:true});assert.ok(await p.locator('.footnote-ref').count()>20);
+await p.screenshot({path:'research/report-preview.png',fullPage:false});
+assert.deepEqual(errors,[]);console.log('PASS: cutaway layers, scene transitions, export, Arabic, 320px layout and cited research PDF.');
+await writeFile('tests/enhancement-results.json',JSON.stringify({passed:true,errors},null,2));await browser.close();

@@ -1,0 +1,11 @@
+import {chromium} from 'playwright';
+import {writeFile} from 'node:fs/promises';
+const browser=await chromium.launch({executablePath:process.env.CHROME_PATH || '/usr/bin/google-chrome',headless:true,args:['--no-sandbox','--enable-unsafe-swiftshader']});
+const p=await browser.newPage({viewport:{width:1440,height:1100}});const errors=[];p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
+await p.goto(new URL('../index.html', import.meta.url).href);await p.waitForTimeout(1200);
+await p.locator('[data-scene="detail"]').click();await p.waitForTimeout(1000);await p.screenshot({path:'preview-bladder-layers.png',fullPage:true});
+await p.locator('[data-scene="body"]').click();await p.waitForTimeout(1000);
+await p.evaluate(()=>{const m=window.__atlas.model();m.setFocus(null);m.setEffects(false);m.organMeshes.forEach(x=>x.visible=false);m.lesionMeshes.forEach(x=>x.visible=false);m.group.traverse(x=>{if(x.userData.decorative)x.visible=false;});});
+await p.waitForTimeout(300);
+const data=await p.evaluate(()=>window.__atlas.renderer().domElement.toDataURL('image/png').split(',')[1]);await writeFile('design/anatomical-reference.png',Buffer.from(data,'base64'));
+console.log(JSON.stringify({errors}));await browser.close();

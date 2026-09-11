@@ -1,0 +1,10 @@
+import {chromium} from 'playwright';
+const browser=await chromium.launch({executablePath:process.env.CHROME_PATH || '/usr/bin/google-chrome',headless:true,args:['--no-sandbox','--enable-unsafe-swiftshader','--disable-dev-shm-usage']});
+const page=await browser.newPage({viewport:{width:1440,height:1100},deviceScaleFactor:1});
+page.on('pageerror',e=>console.log('PAGE ERROR:',e.message));
+page.on('console',m=>{if(m.type()==='error')console.log('CONSOLE ERROR:',m.text())});
+await page.goto(new URL('../index.html', import.meta.url).href);
+await page.waitForTimeout(2500);
+await page.screenshot({path:'preview-desktop.png',fullPage:true});
+console.log(await page.evaluate(()=>({canvas:!!document.querySelector('canvas'),renderer:!!window.__atlas?.renderer(),bodyBounds:window.__atlas?.model()?.group.children.length,overflow:document.documentElement.scrollWidth>innerWidth})));
+await browser.close();
