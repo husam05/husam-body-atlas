@@ -1,6 +1,6 @@
 # Husam · Body Atlas
 
-[Open the live atlas](https://husam05.github.io/husam-body-atlas/) in a modern browser. For offline use, open **index.html** in Chrome or Edge, or open **Husam-3D.html** in the parent folder. No server, installation, or internet connection is needed to use the atlas. Keep the `assets` folder beside it and the original PDFs in the parent folder for report links.
+[Open the live atlas](https://husam05.github.io/husam-body-atlas/Husam-3D.html) in a modern browser. For offline use, open **index.html** in Chrome or Edge, or open **Husam-3D.html** in the parent folder. No server, installation, or internet connection is needed to use the atlas. Keep the `assets` folder beside it and the original PDFs in the parent folder for report links.
 
 ## Explore the body
 

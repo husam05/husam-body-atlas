@@ -2,7 +2,7 @@
 
 An offline, bilingual 3D anatomy viewer that connects Husam's supplied reports with educational anatomy, a bladder-wall cutaway, and CT-derived surfaces and image previews.
 
-**[Open the live 3D atlas](https://husam05.github.io/husam-body-atlas/)**
+**[Open the live 3D atlas](https://husam05.github.io/husam-body-atlas/Husam-3D.html)**
 
 The repository and hosted site are public and contain identifiable medical information, original reports, and CT-derived assets.
 
@@ -10,7 +10,7 @@ The repository and hosted site are public and contain identifiable medical infor
 
 ## Open the atlas
 
-Use the [live website](https://husam05.github.io/husam-body-atlas/) in a modern browser. The GitHub repository page is for browsing source files; the website runs the interactive viewer.
+Use the [live website](https://husam05.github.io/husam-body-atlas/Husam-3D.html) in a modern browser. The GitHub repository page is for browsing source files; the website runs the interactive viewer.
 
 For offline use, clone or download the complete repository, then open **[Husam-3D.html](Husam-3D.html)** in Chrome or Edge. The viewer runs locally without a server or an internet connection. Keep the folder structure intact so fonts, CT assets, research, and report links load correctly. GitHub's file preview does not run the application.
 
@@ -44,4 +44,4 @@ The prebuilt application needs no dependency installation. Its reports do not es
 
 ## Website deployment
 
-GitHub Pages publishes the `main` branch from the repository root. The root `index.html` opens the atlas in `husam-body/`, preserving relative asset and report links. `.nojekyll` serves the prebuilt files without Jekyll processing. Push updates to `main` after rebuilding the application to update the live site.
+GitHub Pages publishes the `main` branch from the repository root. The root `index.html` opens `Husam-3D.html` automatically. That launcher loads the atlas in `husam-body/`, preserving relative asset and report links. `.nojekyll` serves the prebuilt files without Jekyll processing. Push updates to `main` after rebuilding the application to update the live site.
