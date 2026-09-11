@@ -33,5 +33,6 @@ test-results/
 
 # Generated verification logs and temporary report preview
 /husam-body/tests/*results.json
+!/husam-body/tests/interface-results.json
 /husam-body/research/report-validation.json
 /husam-body/research/report-preview.png

@@ -1,6 +1,6 @@
 # Husam · Body Atlas
 
-Open **index.html** in Chrome or Edge, or open **Husam-3D.html** in the parent folder. No server, installation, or internet connection is needed to use the atlas. Keep the `assets` folder beside it and the original PDFs in the parent folder for report links.
+[Open the live atlas](https://husam05.github.io/husam-body-atlas/) in a modern browser. For offline use, open **index.html** in Chrome or Edge, or open **Husam-3D.html** in the parent folder. No server, installation, or internet connection is needed to use the atlas. Keep the `assets` folder beside it and the original PDFs in the parent folder for report links.
 
 ## Explore the body
 
@@ -58,7 +58,7 @@ npm run build
 npm test
 ```
 
-The browser checks use `/usr/bin/google-chrome` by default; set `CHROME_PATH` to another installed Chrome or Chromium executable if needed. Paths are relative to the checkout. The existing suites cover offline startup, WebGL rendering, separate anatomy/CT views, organ selection, effects, laterality, transparency, image export, source links, Arabic, narrow layouts, the bladder cutaway, and anatomy navigation. Running the checks generates local results in `tests/results.json`, `tests/enhancement-results.json`, and `tests/studio-results.json`; these logs are excluded from version control.
+The browser checks use `/usr/bin/google-chrome` by default; set `CHROME_PATH` to another installed Chrome or Chromium executable if needed. Paths are relative to the checkout. The existing suites cover offline startup, WebGL rendering, separate anatomy/CT views, organ selection, effects, laterality, transparency, image export, source links, Arabic, narrow layouts, the bladder cutaway, and anatomy navigation. Running the checks generates local results in `tests/results.json`, `tests/enhancement-results.json`, and `tests/studio-results.json`; these logs are excluded from version control. The selected `tests/interface-results.json` validation snapshot is included because the research document links to it.
 
 The interface regression suite adds viewer placement, readable text, focus continuity, interrupted camera motion, orbital front/back paths, expanded-view orientation, scene changes, reactive reduced motion, and idle rendering. Its result is `tests/interface-results.json` (15 grouped checks passed for this edition). The full five-suite `npm test` run also passed, including motion unit checks and the existing atlas, cutaway, and anatomy-navigation regressions. Previews illustrate layout; automated checks do not constitute a complete accessibility or medical validation.
 
@@ -66,4 +66,4 @@ Run `npm run research` to rebuild the research HTML and combined Markdown. After
 
 To reproduce CT assets, run `python scripts/build_ct_assets.py` from this folder. This requires the original archive in the parent folder and the Python packages listed in the script. The large raw archive is excluded from Git; the generated CT assets are included. Detailed source mapping, physical axes, thresholds, and processing limitations are recorded in `assets/ct/metadata.json`. Both `.glb` meshes are included for reuse.
 
-Medical reference links are available inside **Reports & context**. The application makes no network requests and uploads no files. Opening an external reference is a separate browser navigation. The application reads reports and CT assets from the local checkout. This private repository also stores the reports and generated CT assets; keep its access restricted.
+Medical reference links are available inside **Reports & context**. The offline copy makes no network requests. The hosted version downloads the application and its assets from the website; the viewer does not upload files. Opening an external reference is a separate browser navigation. The public repository and hosted website also include the reports and generated CT assets.

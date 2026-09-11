@@ -2,13 +2,17 @@
 
 An offline, bilingual 3D anatomy viewer that connects Husam's supplied reports with educational anatomy, a bladder-wall cutaway, and CT-derived surfaces and image previews.
 
-**This private repository contains identifiable medical information, original reports, and CT-derived assets. Keep repository access restricted.**
+**[Open the live 3D atlas](https://husam05.github.io/husam-body-atlas/)**
+
+The repository and hosted site are public and contain identifiable medical information, original reports, and CT-derived assets.
 
 ![Enhanced atlas interface](husam-body/preview-enhanced-desktop.png)
 
 ## Open the atlas
 
-Clone or download the complete repository, then open **[Husam-3D.html](Husam-3D.html)** in Chrome or Edge. The viewer runs locally without a server or an internet connection. Keep the folder structure intact so fonts, CT assets, research, and report links load correctly. GitHub's file preview does not run the application.
+Use the [live website](https://husam05.github.io/husam-body-atlas/) in a modern browser. The GitHub repository page is for browsing source files; the website runs the interactive viewer.
+
+For offline use, clone or download the complete repository, then open **[Husam-3D.html](Husam-3D.html)** in Chrome or Edge. The viewer runs locally without a server or an internet connection. Keep the folder structure intact so fonts, CT assets, research, and report links load correctly. GitHub's file preview does not run the application.
 
 The interface supports English and Arabic, organ selection, anatomical layers, controlled camera transitions, a guided tour, image export, printing, and mobile viewing. The full-body model and bladder cutaway are educational illustrations; the separate CT surfaces show only the scanned region and are not clinical organ or tumor segmentations.
 
@@ -37,3 +41,7 @@ npm test
 Browser tests use `/usr/bin/google-chrome` by default. Set `CHROME_PATH` to another installed Chrome or Chromium executable when necessary. Run `npm run research` to rebuild the research HTML, or `npm run research -- --pdf` to also generate its PDF using local Chrome.
 
 The prebuilt application needs no dependency installation. Its reports do not establish current residual tumor, numerical organ efficiency, or an overall cancer stage; the viewer preserves the source dates and stated uncertainties.
+
+## Website deployment
+
+GitHub Pages publishes the `main` branch from the repository root. The root `index.html` opens the atlas in `husam-body/`, preserving relative asset and report links. `.nojekyll` serves the prebuilt files without Jekyll processing. Push updates to `main` after rebuilding the application to update the live site.

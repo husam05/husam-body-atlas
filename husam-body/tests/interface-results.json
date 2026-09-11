@@ -1,0 +1,231 @@
+{
+  "passed": true,
+  "checks": [
+    "Persistent canvas and keyboard-focused organ control",
+    "Selected annotation plus compact pins and all-labels option",
+    "Front/back orbital path and anatomical laterality",
+    "Rapid scene/layer changes keep newest state and clear overlays",
+    "Arrow and pointer input interrupt camera transitions",
+    "Expanded view preserves custom orientation",
+    "Opacity is independent of presentation updates",
+    "Idle rendering resumes on interaction",
+    "Dynamic reduced motion finishes camera travel, stops rotation and retains static explanation",
+    "Reports view stops rendering; return resumes the same canvas",
+    "Desktop/tablet/320px/390px English and Arabic layout and 44px controls",
+    "Mobile details retain uncertainty and source with accessible focus return",
+    "Printing exposes full report context and restores collapsed sections",
+    "Reduced-motion preference works from initial load",
+    "Offline launch with no browser errors or remote requests"
+  ],
+  "layouts": [
+    {
+      "width": 1440,
+      "lang": "en",
+      "dir": "ltr",
+      "overflow": false,
+      "viewer": {
+        "x": 24,
+        "y": 202.796875,
+        "width": 1056,
+        "height": 818,
+        "right": 1080,
+        "bottom": 1020.796875
+      },
+      "panel": {
+        "x": 1096,
+        "y": 202.796875,
+        "width": 320,
+        "height": 732.796875,
+        "right": 1416,
+        "bottom": 935.59375
+      },
+      "smallTargets": []
+    },
+    {
+      "width": 1100,
+      "lang": "en",
+      "dir": "ltr",
+      "overflow": false,
+      "viewer": {
+        "x": 24,
+        "y": 202.796875,
+        "width": 716,
+        "height": 818,
+        "right": 740,
+        "bottom": 1020.796875
+      },
+      "panel": {
+        "x": 756,
+        "y": 202.796875,
+        "width": 320,
+        "height": 680.015625,
+        "right": 1076,
+        "bottom": 882.8125
+      },
+      "smallTargets": []
+    },
+    {
+      "width": 1100,
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": false,
+      "viewer": {
+        "x": 360,
+        "y": 216.59375,
+        "width": 716,
+        "height": 818,
+        "right": 1076,
+        "bottom": 1034.59375
+      },
+      "panel": {
+        "x": 24,
+        "y": 216.59375,
+        "width": 320,
+        "height": 680.640625,
+        "right": 344,
+        "bottom": 897.234375
+      },
+      "smallTargets": []
+    },
+    {
+      "width": 1024,
+      "lang": "en",
+      "dir": "ltr",
+      "overflow": false,
+      "viewer": {
+        "x": 24,
+        "y": 202.796875,
+        "width": 976,
+        "height": 820,
+        "right": 1000,
+        "bottom": 1022.796875
+      },
+      "panel": {
+        "x": 24,
+        "y": 1034.796875,
+        "width": 976,
+        "height": 486.25,
+        "right": 1000,
+        "bottom": 1521.046875
+      },
+      "smallTargets": []
+    },
+    {
+      "width": 1024,
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": false,
+      "viewer": {
+        "x": 24,
+        "y": 216.59375,
+        "width": 976,
+        "height": 820,
+        "right": 1000,
+        "bottom": 1036.59375
+      },
+      "panel": {
+        "x": 24,
+        "y": 1048.59375,
+        "width": 976,
+        "height": 524.34375,
+        "right": 1000,
+        "bottom": 1572.9375
+      },
+      "smallTargets": []
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "dir": "ltr",
+      "overflow": false,
+      "viewer": {
+        "x": 12,
+        "y": 235.1875,
+        "width": 366,
+        "height": 572.78125,
+        "right": 378,
+        "bottom": 807.96875
+      },
+      "panel": {
+        "x": 12,
+        "y": 819.96875,
+        "width": 366,
+        "height": 573.421875,
+        "right": 378,
+        "bottom": 1393.390625
+      },
+      "smallTargets": []
+    },
+    {
+      "width": 390,
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": false,
+      "viewer": {
+        "x": 12,
+        "y": 250.1875,
+        "width": 366,
+        "height": 580,
+        "right": 378,
+        "bottom": 830.1875
+      },
+      "panel": {
+        "x": 12,
+        "y": 842.1875,
+        "width": 366,
+        "height": 571.921875,
+        "right": 378,
+        "bottom": 1414.109375
+      },
+      "smallTargets": []
+    },
+    {
+      "width": 320,
+      "lang": "en",
+      "dir": "ltr",
+      "overflow": false,
+      "viewer": {
+        "x": 9,
+        "y": 242.78125,
+        "width": 302,
+        "height": 579.953125,
+        "right": 311,
+        "bottom": 822.734375
+      },
+      "panel": {
+        "x": 9,
+        "y": 834.734375,
+        "width": 302,
+        "height": 585.8125,
+        "right": 311,
+        "bottom": 1420.546875
+      },
+      "smallTargets": []
+    },
+    {
+      "width": 320,
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": false,
+      "viewer": {
+        "x": 9,
+        "y": 250.1875,
+        "width": 302,
+        "height": 580,
+        "right": 311,
+        "bottom": 830.1875
+      },
+      "panel": {
+        "x": 9,
+        "y": 842.1875,
+        "width": 302,
+        "height": 591.015625,
+        "right": 311,
+        "bottom": 1433.203125
+      },
+      "smallTargets": []
+    }
+  ],
+  "errors": [],
+  "network": []
+}
