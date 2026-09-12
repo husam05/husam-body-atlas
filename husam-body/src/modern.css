@@ -288,3 +288,25 @@ svg{stroke-width:1.7}
 .transitioning .anatomy-labels{visibility:hidden}
 .transitioning .anatomy-label{pointer-events:none}
 @media print{.accordion::details-content{display:block!important;content-visibility:visible!important}}
+
+/* Anatomy-search host. Owned by app.js; the widget inside it is owned by src/anatomy-search.js.
+   The host shares the tab row rather than adding one, because tests/interface.spec.mjs asserts
+   the viewer starts within 240px (280px under 600px wide) and the tightest layout, 1100px in
+   Arabic, has only 23px of headroom. Keep the trigger no taller than the tab row. */
+.nav-primary{display:flex;align-items:center;gap:8px;min-width:0}
+.nav-tabs{display:flex;min-width:0}
+.nav-ribbon{display:flex;min-width:0}
+.nav-ribbon:empty{display:none}
+.anatomy-search-host{display:flex;align-items:center;flex:0 1 auto;min-width:0}
+.anatomy-search-host:empty{display:none}
+.anatomy-search-host .anatomy-search{max-inline-size:100%}
+/* Tabs keep their natural width so their labels never overflow their controls; the search
+   takes whatever is left of the row. Sharing this row is deliberate: a row of its own would
+   push the viewer past the placement budget on phones. */
+@media(max-width:780px){.nav-primary{width:100%;flex-wrap:nowrap}.nav-primary .tabs{flex:0 0 auto;width:auto;min-width:0}.anatomy-search-host{flex:1 1 0;min-inline-size:4.5rem}}
+/* Narrow-width tab compaction lives in src/anatomy-search.css, which reduces the tabs to
+   icon-only controls under 600px to free room for the field. Do not add a competing rule
+   here: hiding the icons as well would leave the tabs empty. */
+/* Under 600px the tab row has no spare height, so the label is moved to assistive text only.
+   The input keeps its 44px target and its programmatic label through the for/id pair. */
+@media(max-width:600px){.anatomy-search-host .anatomy-search-label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;margin:0}}

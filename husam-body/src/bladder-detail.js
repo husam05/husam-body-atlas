@@ -250,64 +250,107 @@ export function createBladderDetail() {
   neckRim.rotation.x = Math.PI / 2;
   neckRim.position.set(0, 2.62, .025);
 
-  // The growth is a conforming luminal plaque, not a depiction of inverted histology.
-  const lesionTheta = 2.78, lesionPhi = .62;
-  const direction = new THREE.Vector3(Math.sin(lesionTheta) * Math.cos(lesionPhi), Math.sin(lesionTheta) * Math.sin(lesionPhi), Math.cos(lesionTheta));
-  const tangentU = new THREE.Vector3(1, 0, 0).addScaledVector(direction, -direction.x).normalize();
-  const tangentV = direction.clone().cross(tangentU).normalize();
-  function growthPoint(rho, angle, highlight = false) {
-    const d = direction.clone()
-      .addScaledVector(tangentU, Math.cos(angle) * rho * .245)
-      .addScaledVector(tangentV, Math.sin(angle) * rho * .192)
-      .normalize();
-    const theta = Math.acos(THREE.MathUtils.clamp(d.z, -1, 1));
-    const phi = Math.atan2(d.y, d.x);
-    const height = highlight ? .027 : .012 + .195 * Math.pow(Math.max(0, 1 - rho * rho), 1.65)
-      + .007 * Math.sin(angle * 5 + rho * 9) * Math.pow(Math.sin(rho * Math.PI), 2);
-    return surface(radii.lumen, theta, phi, height);
-  }
-  const growthPositions = [], growthUvs = [], growthIndices = [];
-  const growthRings = 24, growthAround = 72;
-  for (let j = 0; j <= growthRings; j++) {
-    const rho = j / growthRings;
-    for (let i = 0; i <= growthAround; i++) {
-      const angle = i / growthAround * TAU;
-      const p = growthPoint(rho, angle);
-      growthPositions.push(p.x, p.y, p.z);
-      growthUvs.push(.5 + Math.cos(angle) * rho * .5, .5 + Math.sin(angle) * rho * .5);
-      if (j && i) {
-        const a = j * (growthAround + 1) + i, b = a - growthAround - 1;
-        // Local U × V points outward from the organ; reverse into the lumen.
-        growthIndices.push(a - 1, b - 1, b, a - 1, b, a);
-      }
-    }
-  }
-  const growthGeometry = new THREE.BufferGeometry();
-  growthGeometry.setAttribute('position', new THREE.Float32BufferAttribute(growthPositions, 3));
-  growthGeometry.setAttribute('uv', new THREE.Float32BufferAttribute(growthUvs, 2));
-  growthGeometry.setIndex(growthIndices); growthGeometry.computeVertexNormals();
-  smoothCoincidentNormals(growthGeometry);
-  const growth = addMesh(growthGeometry, growthMaterial, 'lesion');
-  growth.userData.description = 'Generic growth confined to the luminal lining; no invasion illustrated';
-  growth.userData.schematic = true;
-
+  // Two schematic growths, because the CT describes two. They keep the reported count,
+  // laterality and relative sizes: patient-left about 18 x 10 mm on a narrow pedicle
+  // (attachment about 5 mm), patient-right about 13 x 8 mm on a broad base (about 12 mm),
+  // both near the ureteric orifices on the lower posterior wall. One unit of this enlarged
+  // cutaway is roughly 34.6 mm, so the pair is drawn in proportion to the report.
+  // Both stay inside the lumen and never cross the lining: the pathology report describes
+  // a non-invasive (pTa) finding. Neither is CT segmentation or inverted histology.
   const growthEdgeMaterial = material('lesion', '#e6b691', { roughness: .52 });
-  curveMesh(Array.from({ length: 96 }, (_, i) => growthPoint(.99, i / 96 * TAU, true)), .008, growthEdgeMaterial, 'lesion', true, 120);
   // A dashed selection halo is an annotation and never represents disease spread.
   const haloMaterial = new THREE.MeshBasicMaterial({ color: '#f3d09a', transparent: true, opacity: .72, depthWrite: false });
   const halo = new THREE.Group();
   halo.name = 'Selection annotation';
   layerGroups.lesion.add(halo);
-  for (let arc = 0; arc < 8; arc++) {
-    const points = Array.from({ length: 9 }, (_, j) => growthPoint(1.22, (arc / 8 + j / 9 * .074) * TAU, true));
-    curveMesh(points, .006, haloMaterial, 'lesion', false, 12, halo);
+  function dashedHalo(pointAt) {
+    for (let arc = 0; arc < 8; arc++) {
+      const points = Array.from({ length: 9 }, (_, j) => pointAt((arc / 8 + j / 9 * .074) * TAU));
+      curveMesh(points, .006, haloMaterial, 'lesion', false, 12, halo);
+    }
+  }
+
+  // A broad-based mass conforms to the luminal surface it sits on.
+  function conformingGrowth({ theta, phi, scaleU, scaleV, height }) {
+    const direction = new THREE.Vector3(Math.sin(theta) * Math.cos(phi), Math.sin(theta) * Math.sin(phi), Math.cos(theta));
+    const tangentU = new THREE.Vector3(1, 0, 0).addScaledVector(direction, -direction.x).normalize();
+    const tangentV = direction.clone().cross(tangentU).normalize();
+    const point = (rho, angle, flat = false) => {
+      const d = direction.clone()
+        .addScaledVector(tangentU, Math.cos(angle) * rho * scaleU)
+        .addScaledVector(tangentV, Math.sin(angle) * rho * scaleV)
+        .normalize();
+      const lift = flat ? .027 : .012 + height * Math.pow(Math.max(0, 1 - rho * rho), 1.65)
+        + .007 * Math.sin(angle * 5 + rho * 9) * Math.pow(Math.sin(rho * Math.PI), 2);
+      return surface(radii.lumen, Math.acos(THREE.MathUtils.clamp(d.z, -1, 1)), Math.atan2(d.y, d.x), lift);
+    };
+    const positions = [], uvs = [], indices = [];
+    const rings = 24, around = 72;
+    for (let j = 0; j <= rings; j++) {
+      const rho = j / rings;
+      for (let i = 0; i <= around; i++) {
+        const angle = i / around * TAU;
+        const p = point(rho, angle);
+        positions.push(p.x, p.y, p.z);
+        uvs.push(.5 + Math.cos(angle) * rho * .5, .5 + Math.sin(angle) * rho * .5);
+        if (j && i) {
+          const a = j * (around + 1) + i, b = a - around - 1;
+          // Local U × V points outward from the organ; reverse into the lumen.
+          indices.push(a - 1, b - 1, b, a - 1, b, a);
+        }
+      }
+    }
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    geometry.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+    geometry.setIndex(indices); geometry.computeVertexNormals();
+    smoothCoincidentNormals(geometry);
+    const mesh = addMesh(geometry, growthMaterial, 'lesion');
+    curveMesh(Array.from({ length: 96 }, (_, i) => point(.99, i / 96 * TAU, true)), .008, growthEdgeMaterial, 'lesion', true, 120);
+    dashedHalo(angle => point(1.22, angle, true));
+    return { mesh, center: point(0, 0) };
+  }
+
+  // A pedunculated mass hangs into the lumen from a narrow stalk, the shape patient
+  // guidance describes as looking like a small mushroom growing out of the wall.
+  function pedunculatedGrowth({ theta, phi, headSemi, stalkRadius, stalkLength }) {
+    const base = surface(radii.lumen, theta, phi, .004);
+    const inward = center.clone().sub(base).normalize();
+    const tangentU = new THREE.Vector3(0, 1, 0).cross(inward).normalize();
+    const tangentV = inward.clone().cross(tangentU).normalize();
+    const stalk = addMesh(new THREE.CylinderGeometry(stalkRadius * .9, stalkRadius * 1.16, stalkLength, 24, 1), growthMaterial, 'lesion');
+    stalk.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), inward);
+    stalk.position.copy(base).addScaledVector(inward, stalkLength / 2);
+    const headCenter = base.clone().addScaledVector(inward, stalkLength + headSemi[2]);
+    const head = addMesh(new THREE.SphereGeometry(1, 40, 28), growthMaterial, 'lesion');
+    head.setRotationFromMatrix(new THREE.Matrix4().makeBasis(tangentU, tangentV, inward));
+    head.scale.set(headSemi[0], headSemi[1], headSemi[2]);
+    head.position.copy(headCenter);
+    dashedHalo(angle => headCenter.clone()
+      .addScaledVector(tangentU, Math.cos(angle) * headSemi[0] * 1.3)
+      .addScaledVector(tangentV, Math.sin(angle) * headSemi[1] * 1.3));
+    return { mesh: head, center: headCenter };
+  }
+
+  // Patient-left renders to the viewer's right, the convention the whole-body model uses.
+  const leftGrowth = pedunculatedGrowth({
+    theta: 2.55, phi: -.78,
+    headSemi: [.26, .145, .145], stalkRadius: .072, stalkLength: .17,
+  });
+  const rightGrowth = conformingGrowth({ theta: 2.55, phi: -2.36, scaleU: .129, scaleV: .0795, height: .17 });
+  for (const [growth, note] of [
+    [leftGrowth, 'Schematic patient-left growth, about 18 x 10 mm on a narrow pedicle; confined to the lumen, no invasion illustrated'],
+    [rightGrowth, 'Schematic patient-right growth, about 13 x 8 mm on a broad base; confined to the lumen, no invasion illustrated'],
+  ]) {
+    growth.mesh.userData.description = note;
+    growth.mesh.userData.schematic = true;
   }
 
   const anchors = {
     lining: surface(radii.supportInside, cutAngle(1.13), 1.13),
     support: surface(lerpRadius(radii.supportInside, radii.muscleInside, .5), cutAngle(.20), .20),
     muscle: surface(lerpRadius(radii.muscleInside, radii.outer, .5), cutAngle(2.78), 2.78),
-    lesion: growthPoint(0, 0),
+    lesion: leftGrowth.center,
   };
 
   function setLayer(id) {

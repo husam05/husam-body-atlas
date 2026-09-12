@@ -1,0 +1,28 @@
+/* Scoped styles: the atlas owns placement of the persistent search host. */
+.anatomy-search{position:relative;min-inline-size:0;inline-size:100%;max-inline-size:30rem;color:var(--ink,#22282d);text-align:start}
+.anatomy-search-label{display:block;margin-block-end:4px;font-size:12px;font-weight:550;line-height:1.4}
+.anatomy-search-field{position:relative;min-inline-size:0}
+.anatomy-search-input{display:block;box-sizing:border-box;inline-size:100%;min-inline-size:0;min-block-size:44px;margin:0;padding:9px 12px;border:1px solid #aab5be;border-radius:10px;background:#fff;color:var(--ink,#22282d);font:inherit;font-size:16px;line-height:1.4;text-align:start}
+.anatomy-search-input::placeholder{color:#657078;opacity:1}
+.anatomy-search-input:focus-visible{outline:3px solid #cd7900;outline-offset:3px}
+.anatomy-search-popup{position:absolute;z-index:30;inset-inline:0;inset-block-start:calc(100% + 6px);overflow:auto;max-block-size:min(18rem,45dvh);padding:4px;border:1px solid #aab5be;border-radius:12px;background:#fff;box-shadow:0 8px 24px #202a3726;overscroll-behavior:contain}
+.anatomy-search-popup[hidden],.anatomy-search-empty[hidden]{display:none!important}
+.anatomy-search-results{list-style:none;margin:0;padding:0}
+.anatomy-search-option{display:flex;align-items:center;box-sizing:border-box;min-block-size:44px;min-inline-size:44px;padding:9px 12px;border:2px solid transparent;border-radius:8px;color:var(--ink,#22282d);cursor:pointer;overflow-wrap:anywhere;font-size:16px;line-height:1.4}
+.anatomy-search-option:hover{background:#f1f3f4}
+.anatomy-search-option.is-active{border-color:#a76300;background:#fff2d9;color:#64400a}
+.anatomy-search-option.is-current .anatomy-search-name{font-weight:650}
+.anatomy-search-empty{margin:0;padding:12px;color:var(--muted,#657078);font-size:14px}
+.anatomy-search-sr{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;margin:0;padding:0;border:0}
+.anatomy-search[lang="ar"],.anatomy-search[lang="ar"] *{font-family:AtlasArabic,'Segoe UI',sans-serif;letter-spacing:0}
+@media print{.anatomy-search{display:none!important}}
+
+/* Reserve readable search space in the shared navigation on narrow screens.
+   Scope these integration rules to navigation containing this widget. */
+@media(max-width:600px){
+  .workspace-nav:has(.anatomy-search) .nav-tabs{flex:0 0 auto}
+  .workspace-nav:has(.anatomy-search) .tabs{gap:2px}
+  .workspace-nav:has(.anatomy-search) .tab{font-size:0;gap:0;padding-inline:8px;inline-size:44px;min-inline-size:44px;flex:0 0 44px}
+  .workspace-nav:has(.anatomy-search) .tab svg{margin:0}
+  .workspace-nav:has(.anatomy-search) .anatomy-search-host{flex:1 1 auto}
+}

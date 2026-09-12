@@ -1,3 +1,19 @@
+This application bundles the following third-party components.
+
+1. three.js — 3D rendering library. MIT License. Bundled into index.html.
+2. Outfit — Latin interface typeface (assets/outfit.ttf). SIL Open Font License 1.1.
+   Full licence text: assets/OFL-Outfit.txt
+3. Noto Naskh Arabic — Arabic typeface (assets/arabic.ttf). SIL Open Font License 1.1.
+   Copyright © The Noto Project Authors (https://github.com/notofonts/noto-fonts)
+   Full licence text: assets/OFL-NotoNaskhArabic.txt
+
+Build-time only, not redistributed in the application: esbuild (MIT),
+Playwright (Apache-2.0), markdown-it (MIT), markdown-it-footnote (MIT).
+
+--------------------------------------------------------------------------------
+1. three.js
+--------------------------------------------------------------------------------
+
 The MIT License
 
 Copyright © 2010-2026 three.js authors

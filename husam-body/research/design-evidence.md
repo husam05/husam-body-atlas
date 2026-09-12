@@ -214,7 +214,9 @@ Primary web sources were checked on 11 September 2026. DICOM pages identify the 
 [^v16]: Three.js, [WebGLRenderer: sortObjects](https://threejs.org/docs/pages/WebGLRenderer.html#sortObjects).
 [^v17]: 3D Slicer, [Volume rendering](https://slicer.readthedocs.io/en/latest/user_guide/modules/volumerendering.html).
 
-## Medical sources The following institutional sources support general explanation and terminology. Local R1–R3 remain the sources for patient-specific claims. Accessed 11 September 2026.
+## Medical sources
+
+ The following institutional sources support general explanation and terminology. Local R1–R3 remain the sources for patient-specific claims. Accessed 11 September 2026.
 
 | Source and direct link | Publication/review date shown | Scope used |
 |---|---|---|

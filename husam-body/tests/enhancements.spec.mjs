@@ -17,7 +17,10 @@ await p.locator('[data-scene="detail"]').click();await p.waitForTimeout(800);
 await p.locator('[data-action="language"]').click();assert.match(await p.locator('.layer-explainer').innerText(),/البطانة/);await p.setViewportSize({width:390,height:844});await p.waitForTimeout(600);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
 await p.locator('[data-action="details-open"]').click();assert.match(await p.locator('#details-dialog .layer-explainer').innerText(),/البطانة/);await p.screenshot({path:'preview-mobile-layers.png',fullPage:true});await p.keyboard.press('Escape');
 await p.setViewportSize({width:320,height:800});await p.waitForTimeout(350);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
-await p.goto(new URL('../research/index.html', import.meta.url).href);await p.pdf({path:'research/design-evidence.pdf',format:'A4',printBackground:true,preferCSSPageSize:true});assert.ok(await p.locator('.footnote-ref').count()>20);
-await p.screenshot({path:'research/report-preview.png',fullPage:false});
+// Read-only check. The PDF is produced solely by `node scripts/build_research.mjs --pdf`,
+// which validates image loads and page errors before writing; regenerating it here would
+// overwrite a validated PDF with an unvalidated one.
+await p.goto(new URL('../research/index.html', import.meta.url).href);assert.ok(await p.locator('.footnote-ref').count()>20);
+assert.equal(await p.locator('h2', {hasText:'Medical sources'}).first().innerText(),'Medical sources');
 assert.deepEqual(errors,[]);console.log('PASS: cutaway layers, scene transitions, export, Arabic, 320px layout and cited research PDF.');
 await writeFile('tests/enhancement-results.json',JSON.stringify({passed:true,errors},null,2));await browser.close();
