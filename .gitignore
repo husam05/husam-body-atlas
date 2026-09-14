@@ -1,5 +1,5 @@
 # Dependencies and local build/test caches
-node_modules/
+node_modules
 __pycache__/
 *.py[cod]
 .DS_Store

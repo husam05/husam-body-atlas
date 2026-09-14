@@ -1,6 +1,8 @@
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import { writeFile } from 'node:fs/promises';
+import { findings } from '../src/findings.js';
+import { reportCatalog } from '../src/report-catalog.js';
 const browser=await chromium.launch({executablePath:process.env.CHROME_PATH || '/usr/bin/google-chrome',headless:true,args:['--no-sandbox','--enable-unsafe-swiftshader','--disable-dev-shm-usage']});
 const page=await browser.newPage({viewport:{width:1440,height:1040},deviceScaleFactor:1,acceptDownloads:true});
 const errors=[],remoteRequests=[];
@@ -14,7 +16,8 @@ assert.equal(await page.evaluate(()=>window.__atlas.model().group.visible),true)
 assert.equal(await page.evaluate(()=>window.__atlas.scene().children.filter(x=>x.isGroup&&x.scale.x===15)[0].visible),false);
 assert.equal(await page.locator('#finding-panel h2').innerText(),'Urinary bladder');
 await page.screenshot({path:'preview-desktop.png',fullPage:true});
-for(const [organ,label] of [['kidney','Left kidney'],['liver','Liver'],['hip','Left hip'],['bladder','Urinary bladder']]){
+for(const organ of ['kidney','liver','hip','chest','bladder']){
+ const label=findings[organ].label[0];
  await page.locator('.organ-chip[data-organ="'+organ+'"]').click();
  assert.equal(await page.locator('#finding-panel h2').innerText(),label);
  await page.locator('[data-action="effects"]').click();
@@ -45,8 +48,17 @@ await page.locator('[data-layer="bone"]').click();assert.equal(await page.locato
 await page.locator('[data-layer="body"]').click();await page.locator('[data-layer="both"]').click();
 await page.locator('#ct-slice').fill('6');await page.waitForTimeout(500);
 await page.screenshot({path:'preview-ct.png',fullPage:true});
-await page.locator('.tab[data-tab="sources"]').click();assert.equal(await page.locator('.source-card').count(),3);
-const hrefs=await page.locator('.source-card a').evaluateAll(els=>els.map(e=>e.getAttribute('href')));assert.equal(hrefs.length,3);
+await page.locator('.tab[data-tab="sources"]').click();assert.equal(await page.locator('.report-card').count(),5);
+const hrefs=[];
+for(const report of reportCatalog){
+ await page.locator(`.report-card[data-report-id="${report.id}"]`).click();
+ const link=page.locator('.rl-document-links a[href$=".pdf"]');
+ assert.equal(await link.count(),1);
+ const href=await link.getAttribute('href');
+ assert.equal(href,report.pdf);
+ hrefs.push(href);
+}
+assert.equal(new Set(hrefs).size,5);
 await page.locator('.tab[data-tab="body"]').click();await page.locator('[data-action="language"]').click();
 assert.equal(await page.locator('html').getAttribute('lang'),'ar');
 assert.match(await page.locator('#finding-panel h2').innerText(),/المثانة/);
@@ -58,6 +70,6 @@ await page.screenshot({path:'preview-mobile.png',fullPage:true});
 await page.locator('.anatomy-label[data-organ="kidney"]').click();assert.match(await page.locator('#finding-panel h2').innerText(),/الكلية/);
 await page.locator('.tab[data-tab="ct"]').click();await page.waitForTimeout(400);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
 assert.deepEqual(errors,[]);assert.deepEqual(remoteRequests,[]);
-await writeFile('tests/results.json',JSON.stringify({passed:true,tested:['Offline file launch','WebGL rendering','Initial CT hidden','All four organ selections','Effects explanations','Transparency','Label visibility','Front/back laterality','Image download','CT previews and surface controls','Source links','Arabic','Mobile layout and organ selection','No network requests','No browser errors'],browser:'Google Chrome',errors,remoteRequests},null,2));
+await writeFile('tests/results.json',JSON.stringify({passed:true,tested:['Offline file launch','WebGL rendering','Initial CT hidden','All five organ selections','Effects explanations','Transparency','Label visibility','Front/back laterality','Image download','CT previews and surface controls','Source links','Arabic','Mobile layout and organ selection','No network requests','No browser errors'],browser:'Google Chrome',errors,remoteRequests},null,2));
 console.log('PASS: 16 interaction, rendering, privacy and responsive checks.');
 await browser.close();

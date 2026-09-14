@@ -1,0 +1,28 @@
+/* Evidence linked to the body. Every scan preview opens its dated source. */
+.organ-ribbon .organ-chip{min-width:44px}
+.linked-reports{margin:18px 0 16px;border-block-start:1px solid #e1e4e4;padding-block-start:14px}
+.linked-reports-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#5b6b70;font-size:11px;letter-spacing:1px;font-weight:600;margin-bottom:10px}
+.linked-reports-heading b{font-size:12px;letter-spacing:0;border:1px solid #d6dddb;border-radius:50%;display:grid;place-items:center;min-width:23px;height:23px}
+.linked-image{display:block;width:100%;padding:0;background:#1c252b;border:1px solid #35434b;border-radius:9px;overflow:hidden;color:#e9f0ed;text-align:start;margin-bottom:8px}
+.linked-image img{display:block;width:100%;height:132px;object-fit:contain;background:#11181c;opacity:.93}
+.linked-image>span{display:flex;align-items:center;gap:8px;padding:10px 12px;font-size:12px;min-height:44px}
+.linked-image>span svg{width:16px;height:16px;flex-shrink:0}
+.linked-image>span svg:last-child{margin-inline-start:auto}
+.linked-image:hover{border-color:#c49a5a;background:#28332e}
+.linked-report-list{display:grid;gap:4px}
+.linked-report-list button{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;padding:10px 8px;background:#f5f6f3;border:1px solid transparent;border-radius:7px;text-align:start;font-size:12px;color:#314449}
+.linked-report-list button:hover{border-color:#c7d2ca;background:#ebf0e9}
+.linked-report-list small{display:block;margin-top:3px;color:#6f7978;font-size:11px;line-height:1.4}
+.linked-report-list svg{width:15px;height:15px;flex-shrink:0}
+.study-timeline{grid-template-columns:115px repeat(5,minmax(0,1fr));gap:12px}
+button.timeline-item{background:transparent;border-radius:0;text-align:start;min-height:52px;transition:background-color .15s;padding-block:6px;padding-inline-end:6px}
+button.timeline-item:hover{background:#fff6e7}
+.ar-content .linked-reports-heading,.ar-content .linked-image>span,.ar-content .linked-report-list button,.ar-content .linked-report-list small{font-family:AtlasArabic,sans-serif;letter-spacing:0;font-size:14px;line-height:1.5}
+@media(min-width:781px) and (max-width:1250px){.organ-chip .organ-icon{display:none}.organ-ribbon .organ-chip{padding-inline:8px}.workspace-nav{gap:10px}}
+@media(max-width:1099px){.study-timeline{grid-template-columns:90px repeat(5,minmax(0,1fr));gap:8px}.linked-reports{max-width:580px}.linked-image img{height:165px}}
+@media(max-width:780px){.nav-ribbon{display:block;max-width:100%}.organ-ribbon{display:flex;overflow-x:auto;padding:2px 1px 5px;scrollbar-width:thin;scrollbar-color:#cfb37e transparent}.organ-ribbon .organ-chip{flex:1 0 auto;padding:7px 10px;min-height:44px}.organ-ribbon .organ-chip .organ-icon{display:none}.study-timeline{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.timeline-heading{grid-column:auto}.timeline-item{padding-inline-start:10px}.timeline-item b{font-size:12px}.timeline-item span{font-size:11px}.linked-image img{height:190px}}
+@media(max-width:600px){.model-modebar{grid-template-columns:repeat(4,minmax(0,1fr))}.model-modebar button{display:flex;flex-direction:column;gap:3px;padding:6px 2px;min-height:50px;font-size:11px}.ar-content .model-modebar button{font-size:13px;line-height:1.35}.model-modebar button svg{width:15px;height:15px}.organ-ribbon .organ-chip{padding-inline:9px}.linked-reports-heading{font-size:11px}.study-timeline{padding:14px}.linked-report-list button{font-size:13px}.linked-report-list small{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.linked-image,button.timeline-item{transition:none}}
+@media print{.linked-reports{break-inside:avoid}.linked-image img{height:110px}.study-timeline{grid-template-columns:90px repeat(5,1fr)!important}.linked-report-list button{border-color:#ddd}.linked-reports-heading{color:#333}}
+
+@media(min-width:1001px){.report-library .rl-figures{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.report-library .rl-figures>h4,.report-library .rl-figures>figure:first-of-type{grid-column:1/-1}.report-library .rl-figures figure{margin:0}.report-library .rl-figures figure:not(:first-of-type) img{height:240px;object-fit:contain}}

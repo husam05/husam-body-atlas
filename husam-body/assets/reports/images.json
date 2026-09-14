@@ -1,0 +1,364 @@
+{
+  "schemaVersion": 1,
+  "pathBase": "husam-body/",
+  "bilingualOrder": [
+    "en",
+    "ar"
+  ],
+  "notice": [
+    "Selected original study pixels rendered for reference. AI review is preliminary and does not replace a radiologist report.",
+    "مقاطع مختارة من صور الفحص الأصلية للرجوع إليها. مراجعة الذكاء الاصطناعي أولية ولا تحل محل تقرير اختصاصي الأشعة."
+  ],
+  "studies": [
+    {
+      "id": "liver-mri",
+      "title": [
+        "Liver MRI · 14 September 2026",
+        "الرنين المغناطيسي للكبد · 14 أيلول 2026"
+      ],
+      "pdf": "assets/reports/liver-mri-en-ar.pdf",
+      "html": "assets/reports/liver-mri-en-ar.html",
+      "figures": [
+        {
+          "src": "assets/reports/liver-mri-overview.jpg",
+          "caption": [
+            "Report figure: one unconfirmed tiny right-liver review point compared across T2 and later T1 sequences.",
+            "شكل التقرير: مقارنة نقطة مراجعة صغيرة غير مؤكدة في الكبد الأيمن عبر تسلسلات T2 وT1 اللاحقة."
+          ],
+          "seriesReferences": [
+            {
+              "series": 3,
+              "instance": 8
+            },
+            {
+              "series": 10,
+              "instance": 41
+            },
+            {
+              "series": 12,
+              "instance": 41
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/reports/liver-mri-slice-01.jpg",
+          "caption": [
+            "Axial T2: tiny bright right-liver review point; its nature is unconfirmed.",
+            "مقطع محوري T2: نقطة مراجعة صغيرة ساطعة في الكبد الأيمن؛ طبيعتها غير مؤكدة."
+          ],
+          "seriesReferences": [
+            {
+              "series": 3,
+              "instance": 8
+            }
+          ],
+          "window": {
+            "center": 357.0,
+            "width": 794.0,
+            "units": "display intensity"
+          },
+          "rendering": [
+            "Original image pixels; display window and proportional resizing only. Patient metadata and DICOM overlays are not rendered.",
+            "بكسلات الصورة الأصلية؛ تغيير نافذة العرض والحجم بشكل متناسب فقط. لا تُعرض بيانات المريض أو طبقات DICOM."
+          ]
+        },
+        {
+          "src": "assets/reports/liver-mri-slice-02.jpg",
+          "caption": [
+            "Adjacent axial T2 slice for comparison with the same unconfirmed review point.",
+            "مقطع محوري T2 مجاور للمقارنة مع نقطة المراجعة نفسها غير المؤكدة."
+          ],
+          "seriesReferences": [
+            {
+              "series": 3,
+              "instance": 9
+            }
+          ],
+          "window": {
+            "center": 357.0,
+            "width": 794.0,
+            "units": "display intensity"
+          },
+          "rendering": [
+            "Original image pixels; display window and proportional resizing only. Patient metadata and DICOM overlays are not rendered.",
+            "بكسلات الصورة الأصلية؛ تغيير نافذة العرض والحجم بشكل متناسب فقط. لا تُعرض بيانات المريض أو طبقات DICOM."
+          ]
+        },
+        {
+          "src": "assets/reports/liver-mri-slice-03.jpg",
+          "caption": [
+            "Axial T2 overview of the liver and gallbladder; selected for anatomical context.",
+            "نظرة عامة محورية T2 للكبد والمرارة؛ اختيرت لتوضيح السياق التشريحي."
+          ],
+          "seriesReferences": [
+            {
+              "series": 3,
+              "instance": 14
+            }
+          ],
+          "window": {
+            "center": 357.0,
+            "width": 794.0,
+            "units": "display intensity"
+          },
+          "rendering": [
+            "Original image pixels; display window and proportional resizing only. Patient metadata and DICOM overlays are not rendered.",
+            "بكسلات الصورة الأصلية؛ تغيير نافذة العرض والحجم بشكل متناسب فقط. لا تُعرض بيانات المريض أو طبقات DICOM."
+          ]
+        },
+        {
+          "src": "assets/reports/liver-mri-slice-04.jpg",
+          "caption": [
+            "Coronal T2 overview; a selected anatomical reference, not a complete study review.",
+            "نظرة عامة إكليلية T2؛ مرجع تشريحي مختار وليس مراجعة كاملة للفحص."
+          ],
+          "seriesReferences": [
+            {
+              "series": 4,
+              "instance": 21
+            }
+          ],
+          "window": {
+            "center": 607.0,
+            "width": 1154.0,
+            "units": "display intensity"
+          },
+          "rendering": [
+            "Original image pixels; display window and proportional resizing only. Patient metadata and DICOM overlays are not rendered.",
+            "بكسلات الصورة الأصلية؛ تغيير نافذة العرض والحجم بشكل متناسب فقط. لا تُعرض بيانات المريض أو طبقات DICOM."
+          ]
+        },
+        {
+          "src": "assets/reports/liver-mri-slice-05.jpg",
+          "caption": [
+            "Venous-labelled T1 image used to compare the tiny unconfirmed right-liver focus.",
+            "صورة T1 الموسومة بالطور الوريدي لمقارنة البؤرة الصغيرة غير المؤكدة في الكبد الأيمن."
+          ],
+          "seriesReferences": [
+            {
+              "series": 10,
+              "instance": 41
+            }
+          ],
+          "window": {
+            "center": 275.0,
+            "width": 599.0,
+            "units": "display intensity"
+          },
+          "rendering": [
+            "Original image pixels; display window and proportional resizing only. Patient metadata and DICOM overlays are not rendered.",
+            "بكسلات الصورة الأصلية؛ تغيير نافذة العرض والحجم بشكل متناسب فقط. لا تُعرض بيانات المريض أو طبقات DICOM."
+          ]
+        },
+        {
+          "src": "assets/reports/liver-mri-slice-06.jpg",
+          "caption": [
+            "Delayed-labelled T1 image used for comparison; no definitive diagnosis from this panel.",
+            "صورة T1 الموسومة بالطور المتأخر للمقارنة؛ لا تعطي هذه اللوحة تشخيصاً نهائياً."
+          ],
+          "seriesReferences": [
+            {
+              "series": 12,
+              "instance": 41
+            }
+          ],
+          "window": {
+            "center": 258.0,
+            "width": 561.0,
+            "units": "display intensity"
+          },
+          "rendering": [
+            "Original image pixels; display window and proportional resizing only. Patient metadata and DICOM overlays are not rendered.",
+            "بكسلات الصورة الأصلية؛ تغيير نافذة العرض والحجم بشكل متناسب فقط. لا تُعرض بيانات المريض أو طبقات DICOM."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chest-ct",
+      "title": [
+        "Chest CT · 13 September 2026",
+        "التصوير المقطعي للصدر · 13 أيلول 2026"
+      ],
+      "pdf": "assets/reports/chest-ct-en-ar.pdf",
+      "html": "assets/reports/chest-ct-en-ar.html",
+      "figures": [
+        {
+          "src": "assets/reports/chest-ct-overview.jpg",
+          "caption": [
+            "Representative upper, middle and lower chest panels plus included upper abdomen; no lesion annotation.",
+            "مقاطع تمثيلية لأعلى الصدر ووسطه وأسفله والجزء المشمول من أعلى البطن؛ دون تحديد آفة."
+          ],
+          "seriesReferences": [
+            {
+              "series": 6,
+              "instance": 65
+            },
+            {
+              "series": 6,
+              "instance": 130
+            },
+            {
+              "series": 6,
+              "instance": 225
+            },
+            {
+              "series": 7,
+              "instance": 51
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/reports/chest-ct-slice-01.jpg",
+          "caption": [
+            "Upper chest in a lung window; representative anatomy, with no lesion marker.",
+            "أعلى الصدر بنافذة الرئة؛ تشريح تمثيلي دون علامة على آفة."
+          ],
+          "seriesReferences": [
+            {
+              "series": 6,
+              "instance": 65
+            }
+          ],
+          "window": {
+            "center": -600,
+            "width": 1500,
+            "units": "HU"
+          },
+          "rendering": [
+            "Original image pixels; display window and proportional resizing only. Patient metadata and DICOM overlays are not rendered.",
+            "بكسلات الصورة الأصلية؛ تغيير نافذة العرض والحجم بشكل متناسب فقط. لا تُعرض بيانات المريض أو طبقات DICOM."
+          ]
+        },
+        {
+          "src": "assets/reports/chest-ct-slice-02.jpg",
+          "caption": [
+            "Mid-chest in a lung window; vessels appear as lines or dots across slices.",
+            "منتصف الصدر بنافذة الرئة؛ تظهر الأوعية كخطوط أو نقاط عبر المقاطع."
+          ],
+          "seriesReferences": [
+            {
+              "series": 6,
+              "instance": 130
+            }
+          ],
+          "window": {
+            "center": -600,
+            "width": 1500,
+            "units": "HU"
+          },
+          "rendering": [
+            "Original image pixels; display window and proportional resizing only. Patient metadata and DICOM overlays are not rendered.",
+            "بكسلات الصورة الأصلية؛ تغيير نافذة العرض والحجم بشكل متناسب فقط. لا تُعرض بيانات المريض أو طبقات DICOM."
+          ]
+        },
+        {
+          "src": "assets/reports/chest-ct-slice-03.jpg",
+          "caption": [
+            "Lower chest and liver dome in a lung window; the selected panel is not a diagnostic exclusion.",
+            "أسفل الصدر وقبة الكبد بنافذة الرئة؛ لا يستبعد المقطع المختار وجود مرض بشكل تشخيصي."
+          ],
+          "seriesReferences": [
+            {
+              "series": 6,
+              "instance": 185
+            }
+          ],
+          "window": {
+            "center": -600,
+            "width": 1500,
+            "units": "HU"
+          },
+          "rendering": [
+            "Original image pixels; display window and proportional resizing only. Patient metadata and DICOM overlays are not rendered.",
+            "بكسلات الصورة الأصلية؛ تغيير نافذة العرض والحجم بشكل متناسب فقط. لا تُعرض بيانات المريض أو طبقات DICOM."
+          ]
+        },
+        {
+          "src": "assets/reports/chest-ct-slice-04.jpg",
+          "caption": [
+            "Lung bases in a lung window; selected anatomical context without a lesion marker.",
+            "قاعدتا الرئتين بنافذة الرئة؛ سياق تشريحي مختار دون علامة على آفة."
+          ],
+          "seriesReferences": [
+            {
+              "series": 6,
+              "instance": 225
+            }
+          ],
+          "window": {
+            "center": -600,
+            "width": 1500,
+            "units": "HU"
+          },
+          "rendering": [
+            "Original image pixels; display window and proportional resizing only. Patient metadata and DICOM overlays are not rendered.",
+            "بكسلات الصورة الأصلية؛ تغيير نافذة العرض والحجم بشكل متناسب فقط. لا تُعرض بيانات المريض أو طبقات DICOM."
+          ]
+        },
+        {
+          "src": "assets/reports/chest-ct-slice-05.jpg",
+          "caption": [
+            "Contrast-labelled chest series in a soft-tissue window, showing mediastinal anatomy.",
+            "سلسلة الصدر الموسومة بالمادة الظليلة بنافذة الأنسجة الرخوة لإظهار تشريح المنصف."
+          ],
+          "seriesReferences": [
+            {
+              "series": 7,
+              "instance": 25
+            }
+          ],
+          "window": {
+            "center": 40,
+            "width": 400,
+            "units": "HU"
+          },
+          "rendering": [
+            "Original image pixels; display window and proportional resizing only. Patient metadata and DICOM overlays are not rendered.",
+            "بكسلات الصورة الأصلية؛ تغيير نافذة العرض والحجم بشكل متناسب فقط. لا تُعرض بيانات المريض أو طبقات DICOM."
+          ]
+        },
+        {
+          "src": "assets/reports/chest-ct-slice-06.jpg",
+          "caption": [
+            "Included upper abdomen in a soft-tissue window; chest CT does not replace dedicated liver MRI.",
+            "الجزء المشمول من أعلى البطن بنافذة الأنسجة الرخوة؛ لا يحل تصوير الصدر محل رنين مخصص للكبد."
+          ],
+          "seriesReferences": [
+            {
+              "series": 7,
+              "instance": 51
+            }
+          ],
+          "window": {
+            "center": 40,
+            "width": 400,
+            "units": "HU"
+          },
+          "rendering": [
+            "Original image pixels; display window and proportional resizing only. Patient metadata and DICOM overlays are not rendered.",
+            "بكسلات الصورة الأصلية؛ تغيير نافذة العرض والحجم بشكل متناسب فقط. لا تُعرض بيانات المريض أو طبقات DICOM."
+          ]
+        }
+      ]
+    }
+  ],
+  "sourceReports": [
+    {
+      "id": "abdomen-pelvis-ct",
+      "pdf": "assets/reports/abdomen-pelvis-ct.pdf"
+    },
+    {
+      "id": "bladder-pathology",
+      "pdf": "assets/reports/bladder-pathology.pdf"
+    },
+    {
+      "id": "abdomen-pelvis-secondary-review",
+      "pdf": "assets/reports/abdomen-pelvis-secondary-review.pdf"
+    }
+  ]
+}

@@ -14,6 +14,8 @@ Use the [live website](https://husam05.github.io/husam-body-atlas/Husam-3D.html)
 
 For offline use, clone or download the complete repository, then open **[Husam-3D.html](Husam-3D.html)** in Chrome or Edge. The viewer runs locally without a server or an internet connection. Keep the folder structure intact so fonts, CT assets, research, and report links load correctly. GitHub's file preview does not run the application.
 
+The atlas connects five reports across the bladder, left kidney, liver, chest and left hip. It includes a searchable report library, dated source summaries, chest CT/liver MRI image galleries and direct PDF/HTML reading. The new MRI and chest summaries remain explicitly preliminary AI reviews.
+
 The interface supports English and Arabic, organ selection, anatomical layers, controlled camera transitions, a guided tour, image export, printing, and mobile viewing. The full-body model and bladder cutaway are educational illustrations; the separate CT surfaces show only the scanned region and are not clinical organ or tumor segmentations.
 
 ## Project files

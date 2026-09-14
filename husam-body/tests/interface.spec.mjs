@@ -73,7 +73,7 @@ try {
   await settled();
   assert.equal(await page.evaluate(() => __atlas.state.organ), 'kidney');
   assert.deepEqual(await page.evaluate(() => ({ canvas: __interfaceNodes.canvas === document.querySelector('#viewport canvas'), button: __interfaceNodes.button === document.querySelector('.organ-chip[data-organ="kidney"]'), focus: document.activeElement === __interfaceNodes.button })), { canvas: true, button: true, focus: true });
-  assert.equal(await page.locator('.anatomy-label.is-pin').count(), 3);
+  assert.equal(await page.locator('.anatomy-label.is-pin').count(), 4);
   await tool('all-labels');
   assert.equal(await page.locator('.anatomy-label.is-pin').count(), 0);
   await tool('all-labels');
@@ -197,7 +197,7 @@ try {
   await page.waitForTimeout(350);
   assert.equal(await page.evaluate(() => __atlas.motion().renderedFrames), sourceFrames);
   assert.equal(await page.evaluate(() => __atlas.motion().pendingFrame), false);
-  assert.equal(await page.locator('.source-card').count(), 3);
+  assert.equal(await page.locator('.report-card').count(), 5);
   await page.locator('.tab[data-tab="body"]').click();
   await settled();
   assert.ok(await page.evaluate(() => __atlas.motion().renderedFrames) > sourceFrames);

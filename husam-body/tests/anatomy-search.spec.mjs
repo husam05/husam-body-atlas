@@ -10,13 +10,17 @@ import { normalizeAnatomyQuery, searchAnatomy } from '../src/anatomy-search.js';
 
 const entries = Object.entries(findings).map(([id, { label, short }]) => ({ id, label, short }));
 const ids = query => searchAnatomy(entries, query).map(entry => entry.id);
-assert.deepEqual(ids(''), ['bladder', 'kidney', 'liver', 'hip']);
+assert.deepEqual(ids(''), ['bladder', 'kidney', 'liver', 'chest', 'hip']);
 assert.deepEqual(ids('  KIDN  '), ['kidney']);
 assert.deepEqual(ids('left'), ['kidney', 'hip']);
 assert.deepEqual(ids('hip left'), ['hip']);
 assert.deepEqual(ids('الكُلْـية اليُسْرَى'), ['kidney']);
 assert.deepEqual(ids('الورك الايسر'), ['hip']);
 assert.deepEqual(ids('bladder المثانة'), ['bladder']);
+assert.deepEqual(ids('chest'), ['chest']);
+assert.deepEqual(ids('lungs'), ['chest']);
+assert.deepEqual(ids('الصدر'), ['chest']);
+assert.deepEqual(ids('الرئتان'), ['chest']);
 assert.deepEqual(ids('right kidney'), [], 'Do not invent a selectable right kidney');
 assert.deepEqual(ids('pTa'), [], 'Do not index patient findings');
 assert.deepEqual(ids('<img src=x onerror=alert(1)>'), []);
@@ -66,8 +70,8 @@ try {
   assert.equal(await input.getAttribute('aria-autocomplete'), 'list');
   await assertClosed(input);
   await input.focus();
-  assert.equal(await component.getByRole('option').count(), 4);
-  assert.match(await component.getByRole('status').textContent(), /4 matching/);
+  assert.equal(await component.getByRole('option').count(), 5);
+  assert.match(await component.getByRole('status').textContent(), /5 matching/);
   await input.press('Enter');
   assert.deepEqual(await component.evaluate(() => fixture.selected), [], 'Unfiltered Enter must not select arbitrarily');
   await input.press('ArrowUp');
@@ -112,7 +116,7 @@ try {
   await input.click();
   assert.equal(await input.getAttribute('aria-expanded'), 'true');
   await input.fill('');
-  assert.equal(await component.getByRole('option').count(), 4);
+  assert.equal(await component.getByRole('option').count(), 5);
   await input.press('Tab');
   await assertClosed(input);
   assert.equal(await component.locator('#after').evaluate(node => node === document.activeElement), true);
@@ -149,7 +153,7 @@ try {
     await page.waitForFunction(() => !!window.__atlas?.motion());
     await page.evaluate(() => document.fonts.ready);
     await idle(page);
-    const search = page.getByRole('combobox');
+    const search = page.locator('.anatomy-search').getByRole('combobox');
     assert.equal(await search.count(), 1, 'Build the atlas with search integration before running the full suite');
     const before = await page.evaluate(() => ({ organ: __atlas.state.organ, camera: __atlas.camera().position.toArray(), frames: __atlas.motion().renderedFrames }));
     await search.fill('liver');
@@ -168,7 +172,7 @@ try {
       document.querySelector('[data-action="language"]').click();
     });
     assert.deepEqual(await page.evaluate(() => ({ same: searchInputBefore === document.querySelector('[role="combobox"]'), focus: searchInputBefore === document.activeElement, value: searchInputBefore.value, start: searchInputBefore.selectionStart, end: searchInputBefore.selectionEnd })), { same: true, focus: true, value: 'kidney', start: 1, end: 4 });
-    assert.equal(await page.getByRole('option').textContent(), findings.kidney.label[1]);
+    assert.equal(await page.locator('.anatomy-search').getByRole('option').textContent(), findings.kidney.label[1]);
     await search.press('Enter');
     await idle(page);
     assert.equal(await page.evaluate(() => __atlas.state.organ), 'kidney');
@@ -177,7 +181,7 @@ try {
     for (const tab of tabs) {
       await page.locator(`.tab[data-tab="${tab}"]`).click();
       await search.fill('الورك الايسر');
-      await page.getByRole('option', { name: findings.hip.label[1], exact: true }).click();
+      await page.locator('.anatomy-search').getByRole('option', { name: findings.hip.label[1], exact: true }).click();
       await idle(page);
       assert.deepEqual(await page.evaluate(() => ({ tab: __atlas.state.tab, organ: __atlas.state.organ, tour: __atlas.state.tour })), { tab: 'body', organ: 'hip', tour: -1 });
     }
@@ -201,7 +205,7 @@ try {
       await search.fill('');
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${width}px ${lang} overflow`);
       assert.equal(await page.locator('.anatomy-search').getAttribute('dir'), lang === 'ar' ? 'rtl' : 'ltr');
-      assert.equal(await page.getByRole('option').count(), 4);
+      assert.equal(await page.locator('.anatomy-search').getByRole('option').count(), 5);
       assert.ok(await search.evaluate(node => node.getBoundingClientRect().width >= 44), `${width}px ${lang}: search must retain its touch target`);
       assert.deepEqual(await page.locator('.tab').evaluateAll(nodes => nodes.filter(node => node.scrollWidth > node.clientWidth + 1).map(node => node.textContent)), [], `${width}px ${lang}: tab labels must fit their controls`);
       assert.deepEqual(await page.locator('.tab').evaluateAll(nodes => nodes.filter(node => {

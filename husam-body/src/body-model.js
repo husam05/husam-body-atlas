@@ -17,7 +17,7 @@ export function createBodyModel() {
   group.add(liverMarkers);
   const flowParticles = [];
   const flowCurves = [];
-  const focusMeshes = { bladder: [], kidney: [], liver: [], hip: [] };
+  const focusMeshes = { bladder: [], kidney: [], liver: [], hip: [], chest: [] };
   let activeFocus = 'bladder';
   let effectsEnabled = true;
   let presentation = 'anatomy';
@@ -332,11 +332,39 @@ export function createBodyModel() {
     }
   }
 
-  // Faint lung volumes and abdominal contour are orientation cues, not findings.
+  // Generic thoracic anatomy locates the chest report. These are educational
+  // surfaces, not CT segmentations. No pulmonary lesion is drawn.
   const contextOrgan = organMaterial('#a9868d', .12);
+  const lungMaterial = organMaterial('#bb8990', .82);
+  const airwayMaterial = organMaterial('#d2c2aa', .94);
+  const fissureMaterial = organMaterial('#826775', .65);
   for (const side of [-1, 1]) {
-    const lung = sphere([side * .49, 7.55, .00], [.42, .64, .29], contextOrgan);
-    lung.rotation.z = side * -.14;
+    const geometry = new THREE.SphereGeometry(1, 52, 36);
+    const positions = geometry.attributes.position;
+    for (let i = 0; i < positions.count; i++) {
+      const x = positions.getX(i), y = positions.getY(i), z = positions.getZ(i);
+      const basalWidth = 1 - .24 * Math.max(y, 0);
+      const cardiacNotch = side === 1 && x < 0 && z > 0
+        ? .12 * Math.exp(-((y + .22) ** 2) / .18) * -x * z : 0;
+      positions.setXYZ(i, x * .41 * basalWidth + cardiacNotch,
+        y * .66 + .065 * (1 - y * y), z * .29 * basalWidth);
+    }
+    geometry.computeVertexNormals();
+    const lung = selectable(mesh(geometry, lungMaterial, [side * .49, 7.70, .035]), 'chest');
+    lung.name = side < 0 ? 'Right lung · schematic' : 'Left lung · schematic';
+    // Surface lines suggest normal fissures, not abnormalities.
+    selectable(tube([[side * .27, 7.85, .26], [side * .47, 7.58, .32], [side * .71, 7.25, .20]], .008, fissureMaterial, 26).item, 'chest');
+    if (side < 0) selectable(tube([[-.29, 7.63, .30], [-.56, 7.64, .32], [-.81, 7.68, .20]], .008, fissureMaterial, 22).item, 'chest');
+    selectable(tube([[0, 8.02, .33], [side * .23, 7.85, .33], [side * .39, 7.62, .33]], .036, airwayMaterial, 24).item, 'chest');
+    selectable(tube([[side * .28, 7.80, .33], [side * .46, 8.03, .30], [side * .56, 8.14, .24]], .022, airwayMaterial, 20).item, 'chest');
+    selectable(tube([[side * .37, 7.66, .33], [side * .53, 7.48, .31], [side * .60, 7.32, .25]], .021, airwayMaterial, 20).item, 'chest');
+  }
+  selectable(tube([[0, 8.63, .20], [0, 8.32, .27], [0, 8.02, .33]], .051, airwayMaterial, 30).item, 'chest');
+  for (let i = 0; i < 9; i++) {
+    const ring = mesh(new THREE.TorusGeometry(.054, .008, 8, 24), airwayMaterial,
+      [0, 8.12 + i * .052, .315 - i * .011]);
+    ring.rotation.x = Math.PI / 2;
+    selectable(ring, 'chest');
   }
   contour([[-.55, 5.49, .37], [-.42, 5.76, .40], [0, 5.84, .42], [.40, 5.70, .38], [.48, 5.44, .32]], new THREE.LineBasicMaterial({ color: '#c2ad9b', transparent: true, opacity: .09, depthWrite: false }));
 
@@ -517,6 +545,7 @@ export function createBodyModel() {
     kidney: new THREE.Vector3(.61, 6.21, .21),
     liver: new THREE.Vector3(-.63, 7.00, .50),
     hip: new THREE.Vector3(.68, 4.59, .15),
+    chest: new THREE.Vector3(.52, 7.77, .38),
   };
 
   function setPresentation(next = 'anatomy') {
@@ -559,6 +588,8 @@ export function createBodyModel() {
     bone.depthWrite = boneSoft.depthWrite = skeletal;
     contourMaterial.color.set(xray ? '#a1d8d9' : '#d0bba3');
     contextOrgan.color.set(xray ? '#3c757b' : '#a9868d');
+    lungMaterial.color.set(xray ? '#78aeb3' : '#bb8990');
+    lungMaterial.emissive.copy(lungMaterial.color);
     liverMaterial.color.set(xray ? '#348780' : '#793c2d');
     kidneyLeftMaterial.color.set(xray ? '#c99a60' : '#ac6257');
     kidneyRightMaterial.color.set(xray ? '#578e83' : '#965149');
@@ -577,6 +608,7 @@ export function createBodyModel() {
       }
     }
     hipRingMaterial.opacity = activeFocus === 'hip' ? .64 : .19;
+    lungMaterial.opacity = activeFocus === 'chest' ? .94 : .66;
     liverMarkers.visible = activeFocus === 'liver' && (presentation === 'anatomy' || presentation === 'xray');
     flowParticles.forEach(p => { p.visible = effectsEnabled && (presentation === 'anatomy' || presentation === 'xray') && (activeFocus === 'bladder' || activeFocus === 'kidney'); });
   }

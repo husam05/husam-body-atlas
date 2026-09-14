@@ -11,7 +11,7 @@
   "description": "Offline bilingual 3D educational anatomy atlas grounded in supplied records",
   "scripts": {
     "build": "node build.mjs",
-    "test": "node tests/motion-unit.mjs && node tests/atlas.spec.mjs && node tests/enhancements.spec.mjs && node tests/studio.spec.mjs && node tests/interface.spec.mjs",
+    "test": "node tests/motion-unit.mjs && node tests/atlas.spec.mjs && node tests/enhancements.spec.mjs && node tests/studio.spec.mjs && node tests/interface.spec.mjs && node tests/anatomy-search.spec.mjs && node tests/reports.spec.mjs",
     "research": "node scripts/build_research.mjs"
   },
   "devDependencies": {
