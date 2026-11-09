@@ -48,7 +48,7 @@ await page.locator('[data-layer="bone"]').click();assert.equal(await page.locato
 await page.locator('[data-layer="body"]').click();await page.locator('[data-layer="both"]').click();
 await page.locator('#ct-slice').fill('6');await page.waitForTimeout(500);
 await page.screenshot({path:'preview-ct.png',fullPage:true});
-await page.locator('.tab[data-tab="sources"]').click();assert.equal(await page.locator('.report-card').count(),5);
+await page.locator('.tab[data-tab="sources"]').click();assert.equal(await page.locator('.report-card').count(),8);
 const hrefs=[];
 for(const report of reportCatalog){
  await page.locator(`.report-card[data-report-id="${report.id}"]`).click();
@@ -58,7 +58,7 @@ for(const report of reportCatalog){
  assert.equal(href,report.pdf);
  hrefs.push(href);
 }
-assert.equal(new Set(hrefs).size,5);
+assert.equal(new Set(hrefs).size,8);
 await page.locator('.tab[data-tab="body"]').click();await page.locator('[data-action="language"]').click();
 assert.equal(await page.locator('html').getAttribute('lang'),'ar');
 assert.match(await page.locator('#finding-panel h2').innerText(),/المثانة/);

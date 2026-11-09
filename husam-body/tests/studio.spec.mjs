@@ -21,9 +21,9 @@ await p.locator('[data-action="immersive"]').first().click();await p.waitForTime
 assert.ok(await p.locator('#viewer-card').evaluate(el=>el.clientWidth)>700);
 await p.screenshot({path:'preview-immersive.png',fullPage:true});await p.keyboard.press('Escape');await p.waitForTimeout(300);assert.equal(await p.evaluate(()=>window.__atlas.state.immersive),false);
 await p.locator('[data-action="tour-start"]').click();await p.waitForTimeout(800);assert.equal(await p.locator('#tour-card').count(),1);assert.equal(await p.evaluate(()=>window.__atlas.state.modelView),'urinary');
-const expected=[['bladder','detail'],['kidney','urinary'],['liver','body'],['chest','chest'],['hip','body']];
+const expected=[['bladder','detail'],['kidney','urinary'],['liver','body'],['chest','chest'],['hip','body'],['bladder','body']];
 for(const [organ,mode] of expected){await p.locator('[data-action="tour-next"]').click();await p.waitForTimeout(850);assert.equal(await p.evaluate(()=>window.__atlas.state.organ),organ);assert.equal(await p.evaluate(()=>window.__atlas.state.modelView),mode);}
-await p.locator('[data-action="tour-back"]').click();assert.equal(await p.evaluate(()=>window.__atlas.state.tour),4);await p.locator('[data-action="tour-next"]').click();await p.locator('[data-action="tour-next"]').click();assert.equal(await p.locator('#tour-card').count(),0);
+await p.locator('[data-action="tour-back"]').click();assert.equal(await p.evaluate(()=>window.__atlas.state.tour),5);await p.locator('[data-action="tour-next"]').click();await p.locator('[data-action="tour-next"]').click();assert.equal(await p.locator('#tour-card').count(),0);
 await p.locator('[data-action="tour-start"]').click();await p.locator('.organ-chip[data-organ="kidney"]').click();assert.equal(await p.locator('#tour-card').count(),0);assert.equal(await p.evaluate(()=>window.__atlas.state.tour),-1);
 await p.locator('[data-scene="detail"]').click();await p.waitForTimeout(900);await p.screenshot({path:'preview-modern-layers.png',fullPage:true});
 await p.locator('[data-action="language"]').click();await p.waitForTimeout(300);await p.screenshot({path:'preview-modern-arabic.png',fullPage:true});
@@ -31,5 +31,5 @@ await p.setViewportSize({width:390,height:844});await p.waitForTimeout(700);asse
 await p.setViewportSize({width:320,height:800});await p.waitForTimeout(400);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
 await p.locator('.organ-chip[data-organ="liver"]').click();assert.match(await p.locator('#finding-panel h2').innerText(),/الكبد/);
 assert.deepEqual(errors,[]);assert.deepEqual(network,[]);
-await writeFile('tests/studio-results.json',JSON.stringify({passed:true,checks:['Modern WebGL rendering','Four anatomy layers and truthful visibility','Clinical selection restores organs','Organ ribbon','Immersive entry and Escape exit','Six-step guided tour','Tour previous and completion','Manual navigation ends tour','Bladder layers','Arabic','390px and 320px responsive layouts','No remote requests','No browser errors'],errors,network},null,2));
+await writeFile('tests/studio-results.json',JSON.stringify({passed:true,checks:['Modern WebGL rendering','Four anatomy layers and truthful visibility','Clinical selection restores organs','Organ ribbon','Immersive entry and Escape exit','Seven-step guided tour','Tour previous and completion','Manual navigation ends tour','Bladder layers','Arabic','390px and 320px responsive layouts','No remote requests','No browser errors'],errors,network},null,2));
 console.log('PASS: modern studio, immersive mode, guided tour, Arabic, narrow layouts and offline privacy.');await browser.close();

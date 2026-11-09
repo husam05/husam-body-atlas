@@ -14,6 +14,7 @@ const words = {
     emptyHint: 'Try another search or clear the filters to see all supplied records.', reset: 'Clear filters',
     result: count => `${count} ${count === 1 ? 'record' : 'records'} shown`,
     overview: 'Summary', observations: 'Reported observations', images: 'Supporting images',
+    video: 'Operative video', documents: 'More documents from this record',
     locate: 'Locate in body', pdf: 'Open PDF', html: 'Read HTML report', source: 'Evidence source',
     original: 'Open the full record', enlarge: 'Enlarge image', close: 'Close image',
     selected: 'Selected record', figure: n => `Figure ${n}`, sequence: 'Browse the record',
@@ -31,6 +32,7 @@ const words = {
     emptyHint: 'جرّب كلمات أخرى أو امسح عوامل التصفية لعرض جميع السجلات المرفقة.', reset: 'مسح التصفية',
     result: count => `عدد السجلات المعروضة: ${count}`,
     overview: 'الخلاصة', observations: 'الملاحظات الواردة', images: 'الصور الداعمة',
+    video: 'فيديو العملية', documents: 'وثائق إضافية من هذا السجل',
     locate: 'حدّد الموقع في الجسم', pdf: 'فتح ملف PDF', html: 'قراءة تقرير HTML', source: 'مصدر الدليل',
     original: 'فتح السجل الكامل', enlarge: 'تكبير الصورة', close: 'إغلاق الصورة',
     selected: 'السجل المحدد', figure: n => `الصورة ${n}`, sequence: 'تصفّح السجل',
@@ -43,6 +45,7 @@ const words = {
 const modalityNames = {
   ct: ['CT', 'تصوير مقطعي'], mri: ['MRI', 'رنين مغناطيسي'],
   pathology: ['Pathology', 'فحص الأنسجة'], review: ['Secondary review', 'مراجعة ثانوية'],
+  surgery: ['Surgery', 'جراحة'], summary: ['AI summary', 'ملخص توعوي'],
 };
 const icons = {
   file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/>',
@@ -60,6 +63,8 @@ const normalize = value => String(value ?? '').normalize('NFKD').toLowerCase()
 const category = report => {
   const type = normalize(report.modality);
   if (/path|hist|tissue|انسج/.test(type)) return 'pathology';
+  if (/surg|operat|discharge|جراح/.test(type)) return 'surgery';
+  if (/summar|guide|educat|ملخص|دليل/.test(type)) return 'summary';
   if (/secondary|review|مراجعة/.test(type)) return 'review';
   if (/mri|magnetic|رنين/.test(type)) return 'mri';
   if (/\bct\b|computed|مقطعي/.test(type)) return 'ct';
@@ -151,6 +156,7 @@ export function createReportLibrary({ host, lang = 'en', onSelectOrgan, initialR
         report.modality, ...(modalityNames[category(report)] || []),
         ...(report.organs || []).flatMap(key => organs[key] || [key]),
         ...(report.observations || []).flat(), ...(report.dateLabel || []),
+        ...(report.video?.caption || []), ...(report.documents || []).flatMap(doc => doc.label || []),
       ].join(' '));
       return terms.every(term => text.includes(term));
     });
@@ -192,6 +198,8 @@ export function createReportLibrary({ host, lang = 'en', onSelectOrgan, initialR
       ${links ? `<div class="rl-document-links" aria-label="${t.original}">${links}${locatePrimary}</div>` : ''}</header>
       <div class="rl-detail-body"><section class="rl-summary"><h4>${t.overview}</h4><p>${escape(L(report.summary))}</p></section>
       ${report.observations?.length ? `<section class="rl-observations"><h4>${t.observations}</h4><ol>${report.observations.map((observation, i) => `<li><span class="rl-observation-number" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><p>${escape(L(observation))}</p></li>`).join('')}</ol></section>` : ''}
+      ${report.video && localUrl(report.video.src) ? `<section class="rl-video"><h4>${t.video}</h4><video controls preload="metadata" playsinline ${localUrl(report.video.poster) ? `poster="${escape(localUrl(report.video.poster))}"` : ''} src="${escape(localUrl(report.video.src))}" aria-label="${escape(L(report.video.caption))}"></video><p class="rl-video-caption">${escape(L(report.video.caption))}</p>${report.video.note ? `<p class="rl-video-note">${escape(L(report.video.note))}</p>` : ''}</section>` : ''}
+      ${(report.documents || []).filter(doc => localUrl(doc.href)).length ? `<section class="rl-documents"><h4>${t.documents}</h4><div class="rl-documents-list">${report.documents.filter(doc => localUrl(doc.href)).map(doc => `<a class="rl-button" href="${escape(localUrl(doc.href))}" target="_blank" rel="noopener">${svg('file')}${escape(L(doc.label))}${svg('arrow')}</a>`).join('')}</div></section>` : ''}
       ${figures.length ? `<section class="rl-figures"><h4>${t.images}</h4>${figures.map((figure, i) => `<figure><button type="button" class="rl-figure-button" data-rl-figure="${i}" aria-label="${escape(`${t.enlarge}: ${L(figure.caption) || t.figure(i + 1)}`)}"><img src="${escape(localUrl(figure.src))}" alt="${escape(L(figure.caption) || t.figure(i + 1))}" loading="lazy" decoding="async"><span class="rl-figure-expand">${svg('expand')}${t.enlarge}</span></button><figcaption><span class="rl-figure-number">${t.figure(i + 1)}</span>${escape(L(figure.caption))}${figure.seriesReferences?.length ? `<small dir="auto">${escape(figure.seriesReferences.filter(ref => typeof ref === 'string').join(' · '))}</small>` : ''}</figcaption></figure>`).join('')}</section>` : ''}
       <section class="rl-locate"><div><h4>${t.locate}</h4><p>${t.mapNote}</p></div><div class="rl-locate-actions">${(report.organs || []).map(key => `<button type="button" class="rl-button" data-rl-organ="${escape(key)}" ${typeof onSelectOrgan === 'function' ? '' : 'disabled'}>${svg('target')}${escape(organName(key))}</button>`).join('')}</div></section></div>`;
     detail.querySelectorAll('.rl-figure-button img').forEach(img => img.addEventListener('error', () => {

@@ -83,6 +83,12 @@
 .report-library .rl-figure-button>img{display:block;width:100%;max-height:520px;object-fit:contain;margin:0 auto}
 .report-library .rl-figure-expand{position:absolute;bottom:9px;inset-inline-end:9px;display:flex;align-items:center;gap:6px;border:1px solid #a1b7a367;border-radius:6px;background:#253e37eb;color:#eff4e9;padding:7px 9px;font-size:11px;line-height:1.4}
 .report-library .rl-figure-expand svg{width:15px;height:15px}
+.report-library .rl-video{margin-top:28px;padding-top:23px;border-top:1px solid #dce4d7}
+.report-library .rl-video video{display:block;width:100%;max-height:520px;border:1px solid #30423f;border-radius:9px;background:#111b1c;object-fit:contain}
+.report-library .rl-video-caption{margin:12px 0 0;font-size:13px;line-height:1.8;color:#5a6c57}
+.report-library .rl-video-note{margin:6px 0 0;font-size:12px;line-height:1.7;color:#9a7b47}
+.report-library .rl-documents{margin-top:28px;padding-top:23px;border-top:1px solid #dce4d7}
+.report-library .rl-documents-list{display:flex;flex-wrap:wrap;gap:10px}
 .report-library .rl-figure-button:hover .rl-figure-expand{background:#ebbc65;color:#392f1d;border-color:#ebbc65}
 .report-library figcaption{margin:10px 0 0;font-size:12px;line-height:1.8;color:#61715e;overflow-wrap:anywhere}
 .report-library .rl-figure-number{display:inline-block;margin-inline-end:8px;font-weight:600;color:#3e5745}

@@ -197,7 +197,7 @@ try {
   await page.waitForTimeout(350);
   assert.equal(await page.evaluate(() => __atlas.motion().renderedFrames), sourceFrames);
   assert.equal(await page.evaluate(() => __atlas.motion().pendingFrame), false);
-  assert.equal(await page.locator('.report-card').count(), 5);
+  assert.equal(await page.locator('.report-card').count(), 8);
   await page.locator('.tab[data-tab="body"]').click();
   await settled();
   assert.ok(await page.evaluate(() => __atlas.motion().renderedFrames) > sourceFrames);

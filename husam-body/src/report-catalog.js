@@ -376,5 +376,127 @@ export const reportCatalog = [
         ]
     }
 ]
+  },
+  {
+    id: 'bladder-pathology-review',
+    title: ['Bladder tissue — pathology review: pT1', 'عينة المثانة — المراجعة النسيجية: pT1'],
+    modality: 'Pathology',
+    date: '2026-09-15',
+    specimenDate: '2026-09-05',
+    dateLabel: ['Specimen 5 September · review issued 15 September 2026', 'العينة 5 سبتمبر · صدرت المراجعة في 15 سبتمبر 2026'],
+    evidence: ['Signed pathology review · Warith International Cancer Institute', 'مراجعة نسيجية موقّعة · معهد وارث الدولي للسرطان'],
+    organs: ['bladder'],
+    summary: [
+      'A second specialist review of the same TURBT tissue reports papillary urothelial carcinoma, low grade, invading the lamina propria: stage pT1. Detrusor muscle is present and tumor-free. This review changes the stage reported on 9 September (pTa).',
+      'مراجعة اختصاصية ثانية للعينة نفسها تصف سرطاناً حليمياً في الظهارة البولية منخفض الدرجة يغزو الصفيحة الخاصة: المرحلة pT1. عضلة المثانة موجودة وخالية من الورم. تغيّر هذه المراجعة المرحلة الواردة في تقرير 9 سبتمبر (pTa).'
+    ],
+    observations: [
+      ['The same TURBT specimen (#SP1741/26, one paraffin block and one H&E slide) was re-examined on referral; received 13 September, report issued 15 September 2026.', 'أُعيد فحص عينة الاستئصال نفسها (‏#SP1741/26، قالب شمعي واحد وشريحة واحدة) بطلب مراجعة؛ استُلمت في 13 سبتمبر وصدر التقرير في 15 سبتمبر 2026.'],
+      ['Diagnosis: papillary urothelial carcinoma, low grade. Tumor extent: invades the lamina propria (subepithelial connective tissue), classified pT1 under the AJCC 8th edition.', 'التشخيص: سرطان حليمي في الظهارة البولية منخفض الدرجة. امتداد الورم: يغزو الصفيحة الخاصة (النسيج الضام تحت الظهارة)، ويُصنف pT1 وفق الإصدار الثامن من AJCC.'],
+      ['The first report described inverted growth with no invasion (pTa); the review describes papillary configuration with lamina propria invasion (pT1). The review is the later specialist reading and was the basis for further treatment.', 'وصف التقرير الأول نمواً مقلوباً دون غزو (pTa)، بينما تصف المراجعة نمطاً حليمياً مع غزو الصفيحة الخاصة (pT1). المراجعة هي القراءة الاختصاصية الأحدث وكانت أساس الخطوة العلاجية التالية.'],
+      ['Muscularis propria (detrusor muscle) is present in the specimen and negative for tumor. No lymphatic/vascular or perineural invasion was identified.', 'عضلة المثانة موجودة في العينة وسلبية للورم. لم يُحدد غزو لمفاوي/وعائي أو حول عصبي.'],
+      ['In international guidance, T1 tumors are usually offered a second resection to confirm staging and complete removal; the re-TURBT of 6 October 2026 followed this review (see the surgery record).', 'وفق الإرشادات الدولية، يُعرض عادةً استئصال ثانٍ لأورام T1 لتأكيد المرحلة واكتمال الإزالة؛ وقد أُجريت إعادة الاستئصال في 6 أكتوبر 2026 بعد هذه المراجعة (انظر سجل العملية).'],
+      ['This review does not establish whether tumor remained after the first resection, and it does not report the outcome of the 6 October operation.', 'لا تثبت هذه المراجعة وجود ورم متبقٍ بعد الاستئصال الأول أو نفيه، ولا تتضمن نتيجة عملية 6 أكتوبر.']
+    ],
+    pdf: 'assets/reports/bladder-pathology-review.pdf',
+    figures: []
+  },
+  {
+    id: 're-turbt-surgery',
+    title: ['Re-TURBT surgery & discharge — 6 October', 'إعادة الاستئصال عبر الإحليل والخروج — 6 أكتوبر'],
+    modality: 'Surgery',
+    date: '2026-10-06',
+    dateLabel: ['Admitted 5 October · surgery and discharge 6 October 2026', 'الدخول 5 أكتوبر · العملية والخروج 6 أكتوبر 2026'],
+    evidence: ['Hospital discharge summary (photographed) · supplied operative video', 'ملخص الخروج من المستشفى (مصوَّر) · فيديو العملية المرفق'],
+    organs: ['bladder'],
+    summary: [
+      'A second transurethral resection (re-TURBT) was performed on 6 October 2026, as recommended after the pT1 review. Husam was discharged the same day in good condition, with a follow-up visit on 13 October. The pathology of the re-resected tissue is not yet among these records.',
+      'أُجريت إعادة استئصال عبر الإحليل في 6 أكتوبر 2026 وفق التوصية التالية لمراجعة pT1. خرج حسام في اليوم نفسه بحالة جيدة، مع موعد مراجعة في 13 أكتوبر. نتيجة الأنسجة للعملية الثانية ليست ضمن هذه الوثائق بعد.'
+    ],
+    observations: [
+      ['Admission on 5 October 2026 as a known case of bladder cancer, for re-transurethral resection of bladder tumor; the operation took place on 6 October (Dr. Zaid Asaad Abdalridha).', 'الدخول في 5 أكتوبر 2026 كحالة معروفة بسرطان المثانة لإجراء إعادة استئصال الورم عبر الإحليل؛ أُجريت العملية في 6 أكتوبر (د. زيد أسعد عبد الرضا).'],
+      ['The provisional and final diagnosis on the discharge summary is a low-grade urothelial tumor; histopathology on admission is recorded as papillary urothelial carcinoma, low grade.', 'التشخيص المبدئي والنهائي في ملخص الخروج ورم ظهاري بولي منخفض الدرجة؛ وسُجلت نتيجة الأنسجة عند الدخول سرطاناً حليمياً منخفض الدرجة.'],
+      ['Discharge examination was unremarkable (BP 117/70, pulse 85, temperature 36.6, SpO2 98%); the only discharge medication is paracetamol 1 g by mouth as needed.', 'كان فحص الخروج طبيعياً (ضغط 117/70، نبض 85، حرارة 36.6، أكسجة 98%)؛ والدواء الوحيد عند الخروج باراسيتامول 1 غ عند الحاجة.'],
+      ['Instructions: light walking with gradual activity, no heavy lifting, avoid activities that raise bleeding or infection risk, keep the surgical site clean, and return to the emergency department for the listed warning signs.', 'التعليمات: مشي خفيف وزيادة النشاط تدريجياً، وتجنب رفع الأثقال والأنشطة التي تزيد خطر النزف أو الالتهاب، والعناية بنظافة موضع الجراحة، والعودة للطوارئ عند علامات الخطر المذكورة.'],
+      ['The next outpatient visit recorded on the papers is 13 October 2026. The result of the re-resected tissue and the surgeon’s operative findings should be requested there; they determine the next step.', 'موعد المراجعة المدوَّن في الأوراق هو 13 أكتوبر 2026. ينبغي هناك طلب نتيجة أنسجة العملية الثانية وملاحظات الجراح؛ فهما يحددان الخطوة التالية.'],
+      ['The supplied video (5 min 25 s) is a phone recording of the endoscopy monitor during a transurethral resection. It is not labeled inside the file with a date or patient identity and is not a complete record of the operation.', 'الفيديو المرفق (5 دقائق و25 ثانية) تسجيل بالهاتف لشاشة المنظار أثناء استئصال عبر الإحليل. لا يتضمن الملف تاريخاً أو هوية مريض مدمجة، وليس تسجيلاً كاملاً للعملية.']
+    ],
+    pdf: 'assets/reports/re-turbt-discharge.pdf',
+    video: {
+      src: 'assets/reports/re-turbt-video.mp4',
+      poster: 'assets/reports/re-turbt-video-poster.jpg',
+      caption: [
+        'Supplied operative video: a phone recording of the endoscopy monitor during the transurethral resection (5 min 25 s, with sound).',
+        'فيديو العملية المرفق: تسجيل بالهاتف لشاشة المنظار أثناء الاستئصال عبر الإحليل (5 دقائق و25 ثانية، مع الصوت).'
+      ],
+      note: [
+        'Viewer discretion: real surgical footage. The recording was supplied with the 6 October records; the file itself carries no embedded date or identity.',
+        'تنبيه: لقطات جراحية حقيقية. أُرفق التسجيل مع وثائق 6 أكتوبر؛ ولا يحمل الملف نفسه تاريخاً أو هوية مدمجة.'
+      ]
+    },
+    figures: [
+    {
+        "src": "assets/reports/re-turbt-video-stills.jpg",
+        "caption": [
+            "Twelve frames sampled evenly across the supplied operative video, showing the resection loop working through the procedure.",
+            "اثنتا عشرة لقطة موزعة على كامل فيديو العملية المرفق، تُظهر عروة الاستئصال أثناء الإجراء."
+        ]
+    },
+    {
+        "src": "assets/reports/re-turbt-discharge-01.jpg",
+        "caption": [
+            "Discharge summary, page 1: admission 5 October, diagnosis, presentation and admission findings.",
+            "ملخص الخروج، الصفحة 1: الدخول في 5 أكتوبر، والتشخيص، وسبب الدخول ونتائج الفحص."
+        ]
+    },
+    {
+        "src": "assets/reports/re-turbt-discharge-02.jpg",
+        "caption": [
+            "Discharge summary, page 2: operation record of 6 October and the discharge medication.",
+            "ملخص الخروج، الصفحة 2: توثيق عملية 6 أكتوبر ودواء الخروج."
+        ]
+    },
+    {
+        "src": "assets/reports/re-turbt-discharge-03.jpg",
+        "caption": [
+            "Discharge summary, page 3: activity instructions, wound education and the 13 October follow-up date.",
+            "ملخص الخروج، الصفحة 3: تعليمات النشاط والعناية بالجرح وموعد مراجعة 13 أكتوبر."
+        ]
+    },
+    {
+        "src": "assets/reports/re-turbt-discharge-04.jpg",
+        "caption": [
+            "Discharge summary, page 4: education confirmation and hospital emergency contact numbers.",
+            "ملخص الخروج، الصفحة 4: تأكيد التثقيف الصحي وأرقام الاتصال بالمستشفى للطوارئ."
+        ]
+    }
+]
+  },
+  {
+    id: 'patient-guide-arabic',
+    title: ['Bladder cancer guide — Arabic AI summary', 'دليل سرطان المثانة — ملخص عربي بالذكاء الاصطناعي'],
+    modality: 'AI summary',
+    date: '2026-10-09',
+    dateLabel: ['Prepared 9 October 2026 · educational, AI-assisted', 'أُعد في 9 أكتوبر 2026 · تثقيفي بمساعدة الذكاء الاصطناعي'],
+    evidence: ['AI-assisted educational summary · not a medical recommendation', 'ملخص تثقيفي بمساعدة الذكاء الاصطناعي · ليس توصية طبية'],
+    organs: ['bladder'],
+    summary: [
+      'An Arabic educational guide connecting the pT1 review and the 6 October re-TURBT to international guidance (EAU, AUA/SUO, NCCN, NICE, 2026 editions). It explains the questions to ask at follow-up; every treatment decision belongs to the urology and oncology team.',
+      'دليل تثقيفي بالعربية يربط مراجعة pT1 وإعادة الاستئصال في 6 أكتوبر بالإرشادات الدولية (EAU وAUA/SUO وNCCN وNICE بإصدارات 2026). يشرح الأسئلة المهمة في المراجعة؛ ويبقى كل قرار علاجي بيد فريق المسالك والأورام.'
+    ],
+    observations: [
+      ['Re-resection is recommended for T1 tumors even when muscle is present and tumor-free, usually within two to six weeks — the 6 October operation fits this guidance; its pathology result is the key next document.', 'يوصى بإعادة الاستئصال لأورام T1 حتى مع وجود عضلة سليمة، عادةً خلال أسبوعين إلى ستة أسابيع — وتوافق عملية 6 أكتوبر هذا الإرشاد؛ ونتيجتها النسيجية هي الوثيقة الأهم تالياً.'],
+      ['The risk group (size, number, CIS, recurrence and grade) decides later treatment: surveillance, intravesical mitomycin, or BCG with maintenance. Low grade alone does not fix the risk category.', 'تحدد فئة الخطورة (الحجم والعدد ووجود CIS والنكس والدرجة) العلاج اللاحق: المتابعة أو ميتومايسين داخل المثانة أو BCG مع جرعات صيانة. انخفاض الدرجة وحده لا يحسم فئة الخطورة.'],
+      ['A first follow-up cystoscopy about three months after the accepted resection is standard; the guide suggests discussing a January 2027 appointment if the team counts from the October operation.', 'منظار المتابعة الأول بعد نحو ثلاثة أشهر من الاستئصال المعتمد هو المعيار؛ ويقترح الدليل مناقشة موعد في يناير 2027 إذا اعتمد الفريق عملية أكتوبر بداية.'],
+      ['2026 updates summarized: the September 2026 AUA/SUO amendment, the published NCCN 2026 guideline, Australia’s eviQ BCG-with-mitomycin protocol, and Japan’s JCOG1019 observation study — with their limits for this case.', 'ملخص مستجدات 2026: تحديث AUA/SUO الصادر في سبتمبر 2026، وإرشاد NCCN المنشور في 2026، وبروتوكول eviQ الأسترالي (BCG مع ميتومايسين)، ودراسة JCOG1019 اليابانية للمراقبة — مع حدود تطبيقها على هذه الحالة.'],
+      ['Emergency signs after TURBT: inability to pass urine, heavy bleeding with clots, or fever with chills need immediate care. The guide is educational and cannot calculate a personal cure rate from the available records.', 'علامات الطوارئ بعد الاستئصال: احتباس البول أو نزف غزير مع خثرات أو حرارة مع قشعريرة تستدعي مراجعة فورية. الدليل تثقيفي ولا يمكنه حساب نسبة شفاء شخصية من الوثائق المتاحة.']
+    ],
+    pdf: 'assets/reports/bladder-guide-ar-full.pdf',
+    documents: [
+      { label: ['One-page overview (Arabic)', 'الخلاصة في صفحة واحدة'], href: 'assets/reports/bladder-guide-ar-onepage.pdf' },
+      { label: ['Case update after the pT1 review', 'تحديث الحالة بعد مراجعة pT1'], href: 'assets/reports/bladder-guide-ar-pt1-update.pdf' },
+      { label: ['Risk studies discussed for T1–T2', 'دراسات الخطورة المناقشة لـ T1–T2'], href: 'assets/reports/bladder-guide-ar-pt2-studies.pdf' }
+    ],
+    figures: []
   }
 ];

@@ -7,18 +7,18 @@
 - Select a finding once in the organ selector. The viewer shows its label and compact pins for the other findings; **All labels** reveals the remaining annotations.
 - Switch among **Whole body**, **Urinary focus**, and **Bladder layers**. Whole body includes natural-color organs, muscles, skeleton, and opaque skin. Selecting a report finding restores the organ presentation.
 - Drag to rotate and scroll or pinch to zoom. Camera buttons and keyboard controls provide direct alternatives. Preset and focus changes travel around the body; direct input interrupts a transition.
-- Start the six-step **Guided tour** to connect the earlier bladder CT findings, later tissue result, kidney, liver uncertainty, the chest CT review, and secondary hip observation.
+- Start the seven-step **Guided tour** to connect the earlier bladder CT findings, later tissue result, kidney, liver uncertainty, the chest CT review, the secondary hip observation, and the latest events: the pT1 pathology review and the 6 October re-TURBT.
 - Expand the viewer without losing its orientation. Press Escape to exit expanded viewing.
 - Read the selected finding beside the viewer on desktop. On smaller screens, use the summary beneath the viewer and open its complete details in a dialog.
 - Choose the explanation control for the schematic effect. Motion remains optional; reduced-motion preferences apply immediately, and the renderer settles when the view is idle.
-- Use **Reports · 5** for the searchable report library. Filter by study type or organ, read English/Arabic findings, browse the original MRI/chest CT image galleries, and locate the linked organ in the body. Each record preserves its date and evidence type.
+- Use **Reports · 8** for the searchable report library. Filter by study type or organ, read English/Arabic findings, browse the original MRI/chest CT image galleries, the photographed discharge papers and the supplied operative video, and locate the linked organ in the body. Each record preserves its date and evidence type.
 - Select **Chest focus** to explore illustrative lungs and central airways linked to the preliminary chest CT review. No lung lesion is drawn.
 - Use **CT study** to explore surfaces reconstructed from the actual scan and 12 sampled original axial images.
 - Switch between English and Arabic. **Save image** exports a PNG with medical context; the printer button prints the current view.
 
 The full-body model is procedural educational anatomy, not a segmentation of Husam's organs. Skin, muscle, and skeletal layers are schematic general anatomy. The separate CT reconstruction covers the lower chest through the upper thighs only. Its body and dense-tissue surfaces come from density thresholds; they are not clinical organ or tumor segmentations.
 
-The enlarged bladder cutaway uses conceptual wall layers and a symbolic non-invasive growth; it is not a reconstruction of the histology. Select the lining, supporting tissue, or muscle through its label, layer button, or visible model surface.
+The enlarged bladder cutaway uses conceptual wall layers and symbolic growths drawn inside the lumen; it is not a reconstruction of the histology, and it does not draw the lamina propria invasion (pT1) that the 15 September review reports. Select the lining, supporting tissue, or muscle through its label, layer button, or visible model surface.
 
 ## Source chronology
 
@@ -30,6 +30,10 @@ The enlarged bladder cutaway uses conceptual wall layers and a symbolic non-inva
 | `مراجعة_عربية_لدراسة_البطن_والحوض.pdf`, page 1 | Secondary study review; issue date not documented | Left hip degenerative changes, attributed to the secondary review and requiring specialist confirmation |
 | `assets/reports/chest-ct-en-ar.pdf` | CT 13 September; AI review 14 September 2026 | Preliminary chest observations; no confidently identified lung nodule. Does not exclude subtle disease or pulmonary embolism. |
 | `assets/reports/liver-mri-en-ar.pdf` | MRI and AI review 14 September 2026 | Tiny unconfirmed right-liver review point; cyst is possible but unconfirmed. No definitive characterization of all previous liver foci. |
+| `assets/reports/bladder-pathology-review.pdf` | Received 13 September; review issued 15 September 2026 | Specialist review of the same TURBT tissue: papillary urothelial carcinoma, low grade, invading the lamina propria — **pT1** (AJCC 8th). Muscle present and tumor-free; no lymphovascular or perineural invasion. Revises the 9 September pTa reading. |
+| `assets/reports/re-turbt-discharge.pdf` + `re-turbt-discharge-01…04.jpg` | Admission 5 October; surgery and discharge 6 October 2026 | Re-TURBT after the pT1 review. Low-grade urothelial tumor on the discharge summary; unremarkable discharge examination; paracetamol only; follow-up visit 13 October 2026. |
+| `assets/reports/re-turbt-video.mp4` | Supplied with the 6 October records | Phone recording of the endoscopy monitor during a transurethral resection (5 min 25 s). No embedded date or identity; not a complete record of the operation. |
+| `assets/reports/bladder-guide-ar-full.pdf` (+ three one-page PDFs) | Prepared 9 October 2026 | AI-assisted Arabic educational guide linking the pT1 review and re-TURBT to EAU/AUA/NCCN/NICE 2026 guidance. Educational only; not a medical recommendation. |
 
 The model's bladder masses show the earlier CT description. These records do not establish whether any tumor remains now, complete removal, microscopic spread, or an overall cancer stage. The liver findings remain indeterminate. Potential symptoms are general educational explanations, not symptoms confirmed in Husam. Kidney, liver, and whole-body efficiency percentages cannot be calculated from these records.
 
@@ -76,4 +80,14 @@ Medical reference links are available inside **Reports & context**. The offline 
 
 ## September 14 report-library update
 
-The standard `npm test` command now includes anatomy-search and report-library integration checks. The added coverage verifies all five report files, fourteen figures, bilingual search, evidence filters, image enlargement, report-to-body links, and Arabic/English layouts from 320 to 1440 pixels. The [design rationale](research/atlas-design-2026.html) links the public atlas references used for this update.
+The standard `npm test` command now includes anatomy-search and report-library integration checks. The added coverage verifies the report files and figures, bilingual search, evidence filters, image enlargement, report-to-body links, and Arabic/English layouts from 320 to 1440 pixels. The [design rationale](research/atlas-design-2026.html) links the public atlas references used for this update.
+
+## November 10 update: pT1 review, re-TURBT and operative video
+
+Three records were added, bringing the library to eight records and nineteen figures:
+
+- **Pathology review (issued 15 September 2026)** — a second specialist reading of the same TURBT tissue at Warith International Cancer Institute: papillary urothelial carcinoma, low grade, invading the lamina propria (**pT1**, AJCC 8th edition). Muscle present and tumor-free; no lymphovascular or perineural invasion. This revises the 9 September pTa reading, and the bladder finding, wall-layer texts, timeline and exported-image captions now follow the review.
+- **Re-TURBT surgery and discharge (6 October 2026)** — the photographed four-page hospital discharge summary (also combined into `re-turbt-discharge.pdf`), with the supplied operative video (`re-turbt-video.mp4`, a 5 min 25 s phone recording of the endoscopy monitor), its poster frame and a twelve-frame contact sheet. The next recorded outpatient visit is 13 October 2026; the pathology of the re-resected tissue is not yet among the records.
+- **Arabic patient guide (9 October 2026)** — an AI-assisted educational summary in Arabic (full report plus three one-page PDFs) linking the case to EAU, AUA/SUO, NCCN and NICE 2026 guidance. Educational only.
+
+The report library now renders an operative-video section (`video` field) and additional per-record document links (`documents` field). The guided tour gained a seventh step covering the latest events.

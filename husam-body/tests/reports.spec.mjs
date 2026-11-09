@@ -4,13 +4,13 @@ import {chromium} from 'playwright';
 import {reportCatalog} from '../src/report-catalog.js';
 import {findings} from '../src/findings.js';
 
-assert.equal(reportCatalog.length,5);
-assert.equal(new Set(reportCatalog.map(r=>r.id)).size,5);
-assert.equal(reportCatalog.reduce((n,r)=>n+r.figures.length,0),14);
+assert.equal(reportCatalog.length,8);
+assert.equal(new Set(reportCatalog.map(r=>r.id)).size,8);
+assert.equal(reportCatalog.reduce((n,r)=>n+r.figures.length,0),19);
 assert.equal(reportCatalog.find(r=>r.id==='abdomen-pelvis-secondary-review').date,null);
 for(const report of reportCatalog){
   assert.ok(report.organs.every(id=>findings[id]));
-  for(const path of [report.pdf,report.html,...report.figures.map(f=>f.src)].filter(Boolean)){
+  for(const path of [report.pdf,report.html,...report.figures.map(f=>f.src),report.video?.src,report.video?.poster,...(report.documents||[]).map(d=>d.href)].filter(Boolean)){
     assert.ok(!path.includes('..')&&!path.startsWith('/')&&!/^https?:/.test(path));
     assert.ok((await stat(new URL('../'+path,import.meta.url))).size>100);
   }
@@ -47,7 +47,7 @@ try{
  await page.locator('[data-action="language"]').click();
  await page.locator('[data-rl-filter="mri"]').click();assert.equal(await page.locator('.report-card').count(),1);
  await page.evaluate(()=>__atlas.openReport('chest-ct'));
- assert.equal(await page.locator('.report-card').count(),5);
+ assert.equal(await page.locator('.report-card').count(),8);
  assert.equal(await page.locator('.report-card.is-selected').getAttribute('data-report-id'),'chest-ct');
  assert.equal(await page.locator('.rl-figure-button').count(),7);
  assert.match(await page.locator('.report-detail').innerText(),/pulmonary embolism.*cannot|cannot.*pulmonary embolism/i);
@@ -79,6 +79,6 @@ try{
  await page.locator('.rl-document-links [data-rl-organ="chest"]').click();await idle();
  await page.screenshot({path:'preview-chest-atlas.png',fullPage:false});
  assert.deepEqual(errors,[]);assert.deepEqual(remote,[]);
- await writeFile('tests/report-results.json',JSON.stringify({passed:true,reports:5,figures:14,checks:['All local report and image assets','Actual PDF files','Selectable correctly sided schematic lungs','Liver MRI linkage','Selected report survives language change','Arabic search','Filters and direct report navigation','Image dialog and Escape','Report-to-chest navigation','Secondary review provenance','English and Arabic at five viewport widths','No JavaScript errors or network requests']},null,2));
- console.log('PASS: five-report atlas, 14 figures, source links, chest anatomy, filters, image dialog, body navigation and responsive bilingual library.');
+ await writeFile('tests/report-results.json',JSON.stringify({passed:true,reports:8,figures:19,checks:['All local report, image, video and document assets','Actual PDF files','Selectable correctly sided schematic lungs','Liver MRI linkage','Selected report survives language change','Arabic search','Filters and direct report navigation','Image dialog and Escape','Report-to-chest navigation','Secondary review provenance','English and Arabic at five viewport widths','No JavaScript errors or network requests']},null,2));
+ console.log('PASS: eight-record atlas, 19 figures, operative video assets, source links, chest anatomy, filters, image dialog, body navigation and responsive bilingual library.');
 }finally{await browser.close();}
