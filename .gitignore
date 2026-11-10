@@ -36,3 +36,4 @@ test-results/
 !/husam-body/tests/interface-results.json
 /husam-body/research/report-validation.json
 /husam-body/research/report-preview.png
+/husam-body/tests/interface-failure.png
